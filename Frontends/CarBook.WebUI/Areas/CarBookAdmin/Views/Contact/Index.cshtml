@@ -1,0 +1,52 @@
+﻿@model List<ResultContactDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int Count = 0;
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Gelen Mesaj Sayfası</h4>
+                <p class="card-subtitle mb-4">
+                    Ana Sayfa üzerine kullanıcıların İletişim kısmı aracılığıyla gönderdikleri mesajların listesinin bulunduğu sayfadır. İlgili satıra tıklayıp mesajın detayını görebilirsiniz.
+                </p>
+
+                <table id="basic-datatable" class="table dt-responsive nowrap">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Gönderen</th>
+                            <th>Konu</th>
+                            <th>Email</th>
+                            <th>Tarih</th>
+                            <th>Açıklama</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach(var Contacts in Model)
+                        {
+                            Count++;
+
+                            <tr>
+                                <td>@Count</td>
+                                <td>@Contacts.Name</td>
+                                <td>@Contacts.Subject</td>
+                                <td>@Contacts.Email</td>
+                                <td>@(((DateTime)Contacts.SendDate).ToString("dd MMMM")) @(((DateTime)Contacts.SendDate).ToString("yyyy"))</td>
+                                <td>@(Contacts.Message.Length > 246 ? Contacts.Message.Substring(0, 246) + "..." : Contacts.Message)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div> 
+        </div> 
+    </div>
+</div>
+

@@ -1,0 +1,43 @@
+﻿@model UpdateAuthorDto
+
+@{
+    ViewData["Title"] = "GetAuthor";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+
+        <h4 class="card-title">Yazar Güncelleme Aalanı</h4>
+        <p class="card-subtitle mb-12">
+            Yazar alanına veri güncelleme işlemini aşağıdaki panelden yapabilirsiniz.
+        </p>
+
+        <form method="post">
+            <input type="hidden"  asp-for="AuthorId">
+            <br />
+            <div class="form-group">
+                <img src="@Html.DisplayFor(x=>x.ImageUrl)" title="@Html.DisplayFor(x=>x.Name)" width="160" height="160" id="resim" style="border-radius:50%;cursor:pointer;" />
+            </div>
+            <div class="form-group">
+                <label for="exampleInputName">Ad Soyad</label>
+                <input type="text" class="form-control" id="exampleInputName" asp-for="Name" placeholder="Lütfen Yazarın Adını Soyadını Giriniz...">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputName">Açıklama</label>
+
+                <textarea class="form-control" asp-for="Description" placeholder="Lütfen Yazar Hakkında Açıklama Giriniz..." rows="8">
+
+                </textarea>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputName">Yazar Görsel</label>
+                <input type="text" class="form-control" id="exampleInputName" asp-for="ImageUrl" placeholder="Lütfen Yazarın Görselini Giriniz...">
+            </div>
+
+            <button type="submit" class="btn btn-primary waves-effect waves-light">Güncelle</button>
+        </form>
+    </div>
+</div>
+

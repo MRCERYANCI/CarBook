@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+    @await Html.PartialAsync("~/Views/AdminLayout/AdminHeaderPartial.cshtml")
+<body>
+    <div id="layout-wrapper">
+        @await Html.PartialAsync("~/Views/AdminLayout/AdminNavBarPartial.cshtml")
+
+        @await Html.PartialAsync("~/Views/AdminLayout/AdminSideBarPartial.cshtml")
+       
+        <div class="main-content">
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+                                <h4 class="mb-0 font-size-18"></h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
+                                        <li class="breadcrumb-item active">Starter</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @RenderBody()
+
+                </div> 
+            </div>
+
+            @await Html.PartialAsync("~/Views/AdminLayout/AdminFooterPartial.cshtml")
+        </div>
+    </div>
+    <div class="menu-overlay"></div>
+    @await Html.PartialAsync("~/Views/AdminLayout/AdminScriptPartial.cshtml")
+</body>
+</html>

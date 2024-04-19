@@ -1,0 +1,121 @@
+﻿@model List<ResultAuthorDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int Count = 0;
+}
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-body">
+
+            <h4 class="card-title">Yazarlar Tablosu</h4>
+            <p class="card-subtitle mb-4">Bu alanda yazarların bilgisi hem tablo hem de card şeklinde görüntüleyebilirsiniz.</p>
+
+            <ul class="nav nav-tabs mb-3">
+                <li class="nav-item">
+                    <a href="#home" data-toggle="tab" aria-expanded="false" class="nav-link">
+                        <i class="mdi mdi-home-variant d-lg-none d-block"></i>
+                        <span class="d-none d-lg-block">Tablo Görünümlü</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#profile" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                        <i class="mdi mdi-account-circle d-lg-none d-block"></i>
+                        <span class="d-none d-lg-block">Card Görünümlü</span>
+                    </a>
+                </li>
+                
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane" id="home">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Yazar Listesi</h4>
+                                    <p class="card-subtitle mb-4">
+                                       Yazarlarla ilgili işlemlerin gerçekleştirileceği sayfadır. Yazar girişi yaparken bilgileri eksiksiz
+                                       girmeye özen gösteriniz.
+                                    </p>
+                                    <div class="table-responsive">
+                                        <table class="table mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Ad Soyad</th>
+                                                    <th>Görsel</th>
+                                                    <th>Sil</th>
+                                                    <th>Güncelleme</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach(var x in Model)
+                                                {
+                                                    Count++;
+
+                                                    <tr>
+                                                        <td>@Count</td>
+                                                        <td>@x.Name</td>
+                                                        <td><img src="@x.ImageUrl" width="50" height="50" id="resim" onclick="buyukResim('@x.ImageUrl')" style="border-radius:50%;cursor:pointer;" /></td>
+                                                        <td><a href="/CarBookAdmin/Author/DeleteAuthor?AuthorId=@x.AuthorId" class="btn btn-outline-danger">Sil</a></td>
+                                                        <td><a href="/CarBookAdmin/Author/GetAuthor?AuthorId=@x.AuthorId" class="btn btn-outline-warning">Güncelle</a></td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <a href="/CarBookAdmin/Author/CreateAuthor" class="btn btn-outline-primary">Yeni Yazar Girişi</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane show active" id="profile">
+                    <div class="row">
+                        @foreach(var x in Model)
+                        {
+                            <div class="col-md-6 col-xl-3">
+                                <div class="card">
+                                    <img class="card-img-top img-fluid" src="@x.ImageUrl" alt="Card image cap" style="width:900px;height:333px;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@x.Name</h5>
+                                        <p class="card-text">
+                                            @x.Description.Substring(0,150)...
+                                        </p>
+                                        <a href="#" class="btn btn-primary waves-effect waves-light">Blog Görüntüle</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+    <div id="buyukResimModal" class="modal">
+        <span class="kapat" style="cursor:pointer;" onclick="kapat()">X</span>
+        <img class="modal-icerik" id="modalResim" style="border-radius:50%;" width="200" height="200">
+    </div>
+
+    <script>
+        function buyukResim(ResimYolu) {
+            var modal = document.getElementById("buyukResimModal");
+            var modalResim = document.getElementById("modalResim");
+            var orjinalResim = document.getElementById("resim");
+
+            modal.style.display = "block";
+            modalResim.src = ResimYolu;
+        }
+
+        function kapat() {
+            document.getElementById("buyukResimModal").style.display = "none";
+        }
+
+    </script>
+</div>
+

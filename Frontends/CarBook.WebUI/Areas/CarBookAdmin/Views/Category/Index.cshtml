@@ -1,0 +1,52 @@
+﻿@model List<ResultCategoryDto>
+@using CarBook.Persistence.Context;
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int Count = 0;
+    CarBookContext carBookContext = new CarBookContext();
+}
+
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Blog Kategori Listesi</h4>
+                <p class="card-subtitle mb-4">
+                    Bloglara ait kategorilerle ilgili işlemlerin gerçekleştireleceği sayfadır. Kategori girişi yaparken bilgileri eksiksiz girmeye özen özen gösterelim
+                </p>
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Kategori Adı</th>
+                                <th>Blog Sayısı</th>
+                                <th>Sil</th>
+                                <th>Güncelleme</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var y in Model)
+                            {
+                                Count++;
+
+                                <tr>
+                                    <td>@Count</td>
+                                    <td>@y.Name</td>
+                                    <td>@carBookContext.Blogs.Count(x=>x.CategoryId == y.CategoryId)</td>
+                                    <td><a href="/CarBookAdmin/Category/DeleteCategory?CategoryId=@y.CategoryId" class="btn btn-outline-danger">Sil</a></td>
+                                    <td><a href="/CarBookAdmin/Category/GetCategory?CategoryId=@y.CategoryId" class="btn btn-outline-warning">Güncelle</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <a href="/CarBookAdmin/Category/CreateCategory" class="btn btn-outline-primary">Yeni Kategori Girişi</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+﻿@model List<ResultLocationDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int Count = 0;
+}
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Lokasyon Bilgileri Alanı</h4>
+                <p class="card-subtitle mb-4">
+                    Ana Sayfa ve araç kiralama sayfasında yer alan araçların alınış ve bırakılış noktalırını temsil eden yer lokasyon kısmıdır. Aşağıda araç
+                    kiralama noktalarına ait lokasyon bilgilerinin isimleri yer alamaktadır. Sağ tarafta yer alan buton üzerinden bu lokasyonun harita bilgisine
+                    erişim sağlayabilirsiniz.
+                </p>
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Lokasyon Adı</th>
+                                <th>Sil</th>
+                                <th>Güncelleme</th>
+                                <th>Konumu Aç</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var Location in Model)
+                            {
+                                Count++;
+
+                                <tr>
+                                    <td>@Count</td>
+                                    <td>@Location.Name</td>
+                                    <td><a href="/CarBookAdmin/Location/DeleteLocation?LocationId=@Location.LocationId" class="btn btn-outline-danger">Sil</a></td>
+                                    <td><a href="/CarBookAdmin/Location/GetLocation?LocationId=@Location.LocationId" class="btn btn-outline-warning">Güncelle</a></td>
+                                    <td><a href="/CarBookAdmin/Location/LocationDetail?LocationId=@Location.LocationId" class="btn btn-outline-dark">Konumu Aç</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <a href="/CarBookAdmin/Location/CreateLocation" class="btn btn-outline-primary">Yeni Lokasyon Bilgileri Girişi</a>
+            </div>
+        </div>
+    </div>
+</div>

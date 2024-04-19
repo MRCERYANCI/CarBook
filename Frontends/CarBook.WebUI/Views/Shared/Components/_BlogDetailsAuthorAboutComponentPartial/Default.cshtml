@@ -1,0 +1,11 @@
+﻿@model ResultAuthorDto
+
+<div class="about-author d-flex p-4 bg-light">
+    <div class="bio mr-5" style="width: 820px;height:90px;  overflow: hidden;">
+        <img src="@Html.DisplayFor(x=>x.ImageUrl)" title="@Html.DisplayFor(x => x.Name)" alt="@Html.DisplayFor(x => x.Name) Image placeholder" style="border-radius:50%;width:100%;height:100%;cursor:pointer; object-fit: cover;" class="img-fluid mb-4">
+    </div>
+    <div class="desc">
+        <h3>@Html.DisplayFor(x => x.Name)</h3>
+        <p>@Html.DisplayFor(x => x.Description)</p>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+﻿@model List<ResultCategoryDto>
+@using CarBook.Persistence.Context
+
+<div class="sidebar-box ftco-animate">
+    <div class="categories">
+        <h3>Kategoriler</h3>
+        @foreach (var x in Model)
+        {
+            CarBookContext carBookContext = new CarBookContext();
+
+           <li><a href="#">@x.Name <span>(@carBookContext.Blogs.Count(y => y.CategoryId == x.CategoryId))</span></a></li>
+        }
+    </div>
+</div>

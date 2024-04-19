@@ -1,0 +1,26 @@
+﻿@model UpdateBrandDto
+
+@{
+    ViewData["Title"] = "GetBrand";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-body">
+
+        <h4 class="card-title">Yeni Marka Girişi</h4>
+        <p class="card-subtitle mb-12">Marka ile İlgili Temel Bilgileri Eksiksiz Doldurmanız Önemlidir. Veri Girişlerinden Sonra Kaydet Butonuna Tıklayarak İşlemi Tamamlayabilirsiniz.</p>
+
+        <form method="post">
+            <input type="hidden" asp-for="BrandId">
+            <div class="form-group">
+                <label for="exampleInputName">Marka Adı</label>
+                <input type="text" class="form-control" id="exampleInputName" asp-for="Name" placeholder="Lütfen Marka İsmini Giriniz...">
+            </div>
+
+            <button type="submit" class="btn btn-primary waves-effect waves-light">Kaydet</button>
+        </form>
+    </div>
+</div>
+

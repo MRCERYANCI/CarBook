@@ -1,0 +1,26 @@
+﻿@model UpdateFeatureDto
+
+@{
+    ViewData["Title"] = "GetFeature";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+
+        <h4 class="card-title">Araç Özelliği Güncelleme Formu</h4>
+        <p class="card-subtitle mb-12">Araç Özelliği ile İlgili Temel Bilgileri Eksiksiz Doldurmanız Önemlidir. Veri Girişlerinden Sonra Güncelle Butonuna Tıklayarak İşlemi Tamamlayabilirsiniz.</p>
+
+        <form method="post">
+            <input type="hidden" asp-for="FeatureId">
+            <div class="form-group">
+                <label for="exampleInputName">Araç Özelliği</label>
+                <input type="text" class="form-control" id="exampleInputName" asp-for="Name" placeholder="Lütfen Araç Özelliğini Giriniz...">
+            </div>
+            
+            <button type="submit" class="btn btn-primary waves-effect waves-light">Güncelle</button>
+        </form>
+    </div>
+</div> 
+
+

@@ -1,0 +1,56 @@
+﻿@model List<ResultBlogsWithsAuthorDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int Count = 0;
+}
+
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Blog Listesi ve İşlemleri</h4>
+                <p class="card-subtitle mb-4">
+                    Bloglarla ilgili silme, güncelleme ve blog listesi erişimini görebilirsiniz. Yeni blog ekleme işlemi admin tarafından yapılmamaktadır. Eğer 
+                    blog ekleme işlemi yapmak isterseniz sisteme yazar olarak giriş yapmanız gerekmektedir. Her yazar sadece kendi bloglarını düenleyebilir. Bunun için
+                    uygulamada Login/WriterLogin sayfası üzerinden giriş yapabilirsiniz.
+                </p>
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Görsel</th>
+                                <th>Başlık</th>
+                                <th>Yazar İsmi</th>
+                                <th>Kategori</th>
+                                <th>Tarih</th>
+                                <th>Kaldır</th>
+                                <th>Yorumlar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var x in Model)
+                            {
+                                Count++;
+                                <tr>
+                                    <td>@Count</td>
+                                    <td><a href="/Blog/BlogDetail?BlogId=@x.BlogId"><img src="@x.CoverImageUrl" width="70" height="70" style="cursor:pointer;" /></a></td>
+                                    <td>@x.Title</td>
+                                    <td>@x.Name</td>
+                                    <td>@x.CategoryName</td>
+                                    <td>@(((DateTime)x.CreatedDate).ToString("MMMM dd")) .@(((DateTime)x.CreatedDate).ToString("yyyy"))</td>
+                                    <td><a href="/CarBookAdmin/Blog/DeleteBlog?BlogId=@x.BlogId" class="btn btn-outline-danger">Kaldır</a></td>
+                                    <td><a href="/CarBookAdmin/Comment/Index?Id=@x.BlogId" class="btn btn-outline-dark">Yorumlar</a></td>
+                                </tr>
+                            }                    
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

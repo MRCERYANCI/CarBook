@@ -1,0 +1,945 @@
+﻿@model List<ResultAuthorDto>
+
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="PTT">
+    <meta name="author" content="PTT AS">
+    <title>ÇOKKEÇECİ Gönderi Takip</title>
+    <link href="/Content/css?v=tHfWXH4io69NbxNSOygEDQLxUGMKePzZxr3_AE9Pt9I1" rel="stylesheet" />
+
+    <script src="/bundles/jquery?v=ywRv5tGf_C8UyV9Nh0RJf-e9u4Rh_SmIN-qx3i-kH8Y1"></script>
+
+    <script src="/bundles/codemirror?v=sccT7DVLaoIRJh2yg2CP2p0z2wLrDLk0RV8UkpHGtDs1"></script>
+
+    <script src="/bundles/bootstrap?v=bidfKU07Hs2ejlO6yzw5zqR2NT9ripYu1GU4EKSr85g1"></script>
+
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="c:\users\burak\onedrive\masaüstü\web yazılımları\araba kiralama yazılımı\carbook\frontends\carbook.webui\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css" rel="stylesheet" />
+    <link href="c:\users\burak\onedrive\masaüstü\web yazılımları\araba kiralama yazılımı\carbook\frontends\carbook.webui\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css" rel="stylesheet" />
+    <link href="c:\users\burak\onedrive\masaüstü\web yazılımları\araba kiralama yazılımı\carbook\frontends\carbook.webui\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css" rel="stylesheet" />
+    <link href="c:\users\burak\onedrive\masaüstü\web yazılımları\araba kiralama yazılımı\carbook\frontends\carbook.webui\wwwroot\lib\bootstrap\dist\css\bootstrap.css" rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <style>
+        @@font-face {
+            font-family: "Omnes";
+            src: url('Omnes Regular.otf');
+        }
+
+        body {
+            font-family: Omnes !important;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        @@media (max-width: 380px) {
+            .anasayfabackground {
+                background: url(images/bgmobil.jpg) no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                background-size: cover;
+                -o-background-size: cover;
+                /*font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif !important;*/
+            }
+
+            .logoalani {
+                /*text-align: center;*/
+                padding-top: 5px;
+            }
+
+            .boscizgi {
+                padding-top: 5px;
+            }
+
+            .footer {
+                /*position: absolute;*/
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                /* Set the fixed height of the footer here */
+                height: 45px;
+                line-height: 45px; /* Vertically center the text there */
+                padding-bottom: 10px;
+            }
+
+                .footer > .container {
+                    padding-right: 5px;
+                    padding-left: 5px;
+                    text-align: center;
+                    font-size: 0.9em;
+                }
+        }
+
+        @@media (min-width: 381px) {
+            .anasayfabackground {
+                background: url(images/bgmobil.jpg) no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                background-size: cover;
+                -o-background-size: cover;
+                /*font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif !important;*/
+            }
+
+            .logoalani {
+                /*text-align: center;*/
+                padding-top: 20px;
+            }
+
+            .boscizgi {
+                padding-top: 30px;
+            }
+
+            .footer {
+                /*position: absolute;*/
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                /* Set the fixed height of the footer here */
+                height: 45px;
+                line-height: 45px; /* Vertically center the text there */
+                padding-bottom: 10px;
+            }
+
+                .footer > .container {
+                    padding-right: 5px;
+                    padding-left: 5px;
+                    text-align: center;
+                    font-size: 0.9em;
+                }
+        }
+
+        @@media (min-width: 550px) {
+
+
+            .logoalani {
+                /*text-align: center;*/
+                padding-top: 80px;
+            }
+
+            .boscizgi {
+                padding-top: 50px;
+            }
+
+            .footer {
+                /* Set the fixed height of the footer here */
+                height: 60px;
+                line-height: 60px; /* Vertically center the text there */
+                padding-bottom: 80px;
+            }
+
+                .footer > .container {
+                    font-size: 1em;
+                }
+        }
+
+        @@media (min-width: 1000px) {
+            .anasayfabackground {
+                background: url(images/bg1.jpg) no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                background-size: cover;
+                -o-background-size: cover;
+                /*font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif !important;*/
+            }
+
+            .boscizgi {
+                padding-top: 0px;
+            }
+
+            .logoalani {
+                padding-top: 10px;
+            }
+
+            .footer > .container {
+                text-align: right;
+            }
+        }
+
+        @@media (min-width: 1500px) {
+            .logoalani {
+                padding-top: 100px;
+            }
+        }
+
+        @@media (min-width: 2000px) {
+            .logoalani {
+                padding-top: 280px;
+            }
+        }
+
+        @@media (min-width: 2600px) {
+            .logoalani {
+                padding-top: 550px;
+            }
+        }
+
+
+        .otherlayout {
+            background: url(images/layoutbg.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+            -o-background-size: cover;
+            /*font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif !important;*/
+        }
+
+        #header {
+            position: absolute;
+            z-index: 10;
+            width: 100%;
+        }
+
+        .footerrenkmavi {
+            background-color: #00a6cf;
+        }
+
+        .footerrenksari {
+            background-color: #ffce38;
+        }
+
+        .pttlogo {
+            background-color: #00a6cf;
+            padding: 20px;
+        }
+
+        body > .container {
+            padding: 60px 15px 0;
+        }
+
+        code {
+            /*font-size: 80%;*/
+        }
+
+        .main {
+            position: relative;
+            /*background: url(images/bg1.png);*/
+            min-height: 100vh;
+            background-size: cover;
+            background-position: center;
+            padding: 40px 0 220px;
+        }
+            /*ANKET KALDIRILDIĞINDA AÇILACAK*/
+            .main h2 {
+                font-size: 1.3em;
+                color: #ffffff;
+                font-weight: bold;
+                text-align: center;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+        /*ANKET EKLENDİĞİNDE*/
+        /*.main h2 {
+                font-size: 1.3em;
+                color: #ffffff;
+                font-weight: bold;
+                text-align: center;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }*/
+
+        .maviarkaplan {
+            background-color: #00a6cf;
+            /*ANKET KALDIRILDIĞINDA AÇILACAK*/
+            padding: 10px;
+            /*ANKET EKLENDİĞİNDE*/
+            /*padding: 5px;*/
+            border-radius: 10px;
+        }
+
+        .btn-outline-secondary:hover {
+            color: black !important;
+        }
+
+        .beyaztext {
+            color: white;
+            font-size: 0.8em;
+            padding-left: 10px;
+        }
+
+        .parabirimitext {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+
+
+
+
+
+
+
+
+        /*//////////////////////////////////////////////////////////////////////////////////////////////*/
+        :root {
+            --bs-blue: #0d6efd;
+            --bs-indigo: #6610f2;
+            --bs-purple: #6f42c1;
+            --bs-pink: #d63384;
+            --bs-red: #dc3545;
+            --bs-orange: #fd7e14;
+            --bs-yellow: #ffc107;
+            --bs-green: #198754;
+            --bs-teal: #20c997;
+            --bs-cyan: #0dcaf0;
+            --bs-white: #fff;
+            --bs-gray: #6c757d;
+            --bs-gray-dark: #343a40;
+            --bs-gray-100: #f8f9fa;
+            --bs-gray-200: #e9ecef;
+            --bs-gray-300: #dee2e6;
+            --bs-gray-400: #ced4da;
+            --bs-gray-500: #adb5bd;
+            --bs-gray-600: #6c757d;
+            --bs-gray-700: #495057;
+            --bs-gray-800: #343a40;
+            --bs-gray-900: #212529;
+            --bs-primary: #066ac9;
+            --bs-white: #fff;
+            --bs-secondary: #9a9ea4;
+            --bs-success: #0cbc87;
+            --bs-info: #17a2b8;
+            --bs-warning: #f7c32e;
+            --bs-danger: #d6293e;
+            --bs-light: #f5f7f9;
+            --bs-dark: #24292d;
+            --bs-orange: #fd7e14;
+            --bs-purple: #6f42c1;
+            --bs-blue: #1d3b53;
+            --bs-primary-rgb: 6, 106, 201;
+            --bs-white-rgb: 255, 255, 255;
+            --bs-secondary-rgb: 154, 158, 164;
+            --bs-success-rgb: 12, 188, 135;
+            --bs-info-rgb: 23, 162, 184;
+            --bs-warning-rgb: 247, 195, 46;
+            --bs-danger-rgb: 214, 41, 62;
+            --bs-light-rgb: 245, 247, 249;
+            --bs-dark-rgb: 36, 41, 45;
+            --bs-orange-rgb: 253, 126, 20;
+            --bs-purple-rgb: 111, 66, 193;
+            --bs-blue-rgb: 29, 59, 83;
+            --bs-white-rgb: 255, 255, 255;
+            --bs-black-rgb: 0, 0, 0;
+            --bs-body-color-rgb: 116, 117, 121;
+            --bs-body-bg-rgb: 255, 255, 255;
+            --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+            --bs-body-font-family: Roboto, sans-serif;
+            --bs-body-font-size: 0.9375rem;
+            --bs-body-font-weight: 400;
+            --bs-body-line-height: 1.5;
+            --bs-body-color: #747579;
+            --bs-body-bg: #fff;
+        }
+
+        .text-primary {
+            --bs-text-opacity: 1;
+            color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
+        }
+
+        .text-white {
+            --bs-text-opacity: 1;
+            color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
+        }
+
+        .text-secondary {
+            --bs-text-opacity: 1;
+            color: rgba(var(--bs-secondary-rgb), var(--bs-text-opacity)) !important;
+        }
+
+        .text-success {
+            --bs-text-opacity: 1;
+            color: rgba(var(--bs-success-rgb), var(--bs-text-opacity)) !important;
+        }
+
+        .text-info {
+            --bs-text-opacity: 1;
+            color: rgba(var(--bs-info-rgb), var(--bs-text-opacity)) !important;
+        }
+
+        .text-warning {
+            --bs-text-opacity: 1;
+            color: rgba(var(--bs-warning-rgb), var(--bs-text-opacity)) !important;
+        }
+
+        .text-danger {
+            --bs-text-opacity: 1;
+            color: rgba(var(--bs-danger-rgb), var(--bs-text-opacity)) !important;
+        }
+
+        .text-light {
+            --bs-text-opacity: 1;
+            color: rgba(var(--bs-light-rgb), var(--bs-text-opacity)) !important;
+        }
+
+        .text-dark {
+            --bs-text-opacity: 1;
+            color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
+        }
+
+        .text-orange {
+            --bs-text-opacity: 1;
+            color: rgba(var(--bs-orange-rgb), var(--bs-text-opacity)) !important;
+        }
+
+        .text-purple {
+            --bs-text-opacity: 1;
+            color: rgba(var(--bs-purple-rgb), var(--bs-text-opacity)) !important;
+        }
+
+        .text-blue {
+            --bs-text-opacity: 1;
+            color: rgba(var(--bs-blue-rgb), var(--bs-text-opacity)) !important;
+        }
+
+        .text-black {
+            --bs-text-opacity: 1;
+            color: rgba(var(--bs-black-rgb), var(--bs-text-opacity)) !important;
+        }
+
+        .text-body {
+            --bs-text-opacity: 1;
+            color: rgba(var(--bs-body-color-rgb), var(--bs-text-opacity)) !important;
+        }
+
+        .text-muted {
+            --bs-text-opacity: 1;
+            color: #cfd3d7 !important;
+        }
+
+        .text-black-50 {
+            --bs-text-opacity: 1;
+            color: rgba(0, 0, 0, 0.5) !important;
+        }
+
+        .text-white-50 {
+            --bs-text-opacity: 1;
+            color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .text-reset {
+            --bs-text-opacity: 1;
+            color: inherit !important;
+        }
+
+        .text-opacity-25 {
+            --bs-text-opacity: 0.25;
+        }
+
+        .text-opacity-50 {
+            --bs-text-opacity: 0.5;
+        }
+
+        .text-opacity-75 {
+            --bs-text-opacity: 0.75;
+        }
+
+        .text-opacity-100 {
+            --bs-text-opacity: 1;
+        }
+
+        .bg-primary {
+            --bs-bg-opacity: 1;
+            background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
+        }
+
+        .bg-white {
+            --bs-bg-opacity: 1;
+            background-color: rgba(var(--bs-white-rgb), var(--bs-bg-opacity)) !important;
+        }
+
+        .bg-secondary {
+            --bs-bg-opacity: 1;
+            background-color: rgba(var(--bs-secondary-rgb), var(--bs-bg-opacity)) !important;
+        }
+
+        .bg-success {
+            --bs-bg-opacity: 1;
+            background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
+        }
+
+        .bg-info {
+            --bs-bg-opacity: 1;
+            background-color: rgba(var(--bs-info-rgb), var(--bs-bg-opacity)) !important;
+        }
+
+        .bg-warning2 {
+            --bs-bg-opacity: 1;
+            background-color: rgba(var(--bs-warning-rgb), var(--bs-bg-opacity)) !important;
+        }
+
+        .bg-danger {
+            --bs-bg-opacity: 1;
+            background-color: rgba(var(--bs-danger-rgb), var(--bs-bg-opacity)) !important;
+        }
+
+        .bg-light {
+            --bs-bg-opacity: 1;
+            background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+        }
+
+        .bg-dark {
+            --bs-bg-opacity: 1;
+            background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+        }
+
+        .bg-orange {
+            --bs-bg-opacity: 1;
+            background-color: rgba(var(--bs-orange-rgb), var(--bs-bg-opacity)) !important;
+        }
+
+        .bg-purple {
+            --bs-bg-opacity: 1;
+            background-color: rgba(var(--bs-purple-rgb), var(--bs-bg-opacity)) !important;
+        }
+
+        .bg-blue {
+            --bs-bg-opacity: 1;
+            background-color: rgba(var(--bs-blue-rgb), var(--bs-bg-opacity)) !important;
+        }
+
+        .bg-black {
+            --bs-bg-opacity: 1;
+            background-color: rgba(var(--bs-black-rgb), var(--bs-bg-opacity)) !important;
+        }
+
+        .bg-body {
+            --bs-bg-opacity: 1;
+            background-color: rgba(var(--bs-body-bg-rgb), var(--bs-bg-opacity)) !important;
+        }
+
+        .bg-transparent {
+            --bs-bg-opacity: 1;
+            background-color: transparent !important;
+        }
+
+        .bg-opacity-10 {
+            --bs-bg-opacity: 0.1;
+        }
+
+        .bg-opacity-25 {
+            --bs-bg-opacity: 0.25;
+        }
+
+        .bg-opacity-50 {
+            --bs-bg-opacity: 0.5;
+        }
+
+        .bg-opacity-75 {
+            --bs-bg-opacity: 0.75;
+        }
+
+        .bg-opacity-100 {
+            --bs-bg-opacity: 1;
+        }
+    </style>
+</head>
+<body class="otherlayout">
+    <header>
+        <!-- Fixed navbar -->
+        <nav class=" pttlogo">
+            <div class="logo text-center">
+                <img src="https://gonderitakip.ptt.gov.tr/Content/images/pttlogo2.png" />
+            </div>
+
+        </nav>
+    </header>
+    <!-- Begin page content -->
+    <main role="main" class="container">
+
+
+
+        <div class="container">
+
+            <div class="row  margintop">
+                <div class="col-2"></div>
+                <div class="col-8" style="font-size:1.7em; text-align:center;  color:#00a6cf">
+                    <b>
+                        <h8><span>DAĞITIMDA</span></h8>
+
+                    </b>
+                    <br />
+                </div>
+
+            </div>
+            <div class="row justify-content-md-center">
+                <div class="col-sm-12 col-md-10 col-lg-8">
+                    <img src="https://gonderitakip.ptt.gov.tr/Content/images/gonderitakiplogolar-4-.png" class="img-fluid" />
+                </div>
+            </div>
+            <div class="row justify-content-md-center margintop">
+                <div class="col-sm-12 col-md-8" style="font-size:1.3em; text-align:center; color:#00a6cf">
+                    <br />
+                    <b>
+                        <h8>
+                            TAKİP NO : <span>2710114200767</span>
+                        </h8>
+                        <input id="ResultList_BarcodeNumber" name="ResultList.BarcodeNumber" type="hidden" value="2710114200767" />
+                    </b>
+                    <br />
+                    <br />
+                </div>
+            </div>
+            <div class="row justify-content-md-center margintop">
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="card" style="border:solid 3px #00a6cf; border-radius:10px; font-size:0.9em;">
+                        <div class="card-header" style="background-color:#00a6cf">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-4"><b> ÇIKIŞ İL / İLÇE</b></div>
+                                <div class="col-sm-8 col-md-8" style="text-align:right;">
+                                    <span>İSTANBUL(AVR)/B&#220;Y&#220;K&#199;EKMECE</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="list-group list-group-flush">
+
+                            <li class="list-inline-item"><i></i><b> GÖNDERİCİ : </b> HA****** CA*****</li>
+                            <li class="list-inline-item"><i></i><b> GÖNDERİCİ ADRES : </b> Sİ******* &#199;A******</li>
+                            <li class="list-inline-item"><i></i><b> KABUL TARİHİ : </b> 23/12/2023</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="card" style="border:solid 3px #ffc525; border-radius:10px; font-size:0.9em; ">
+                        <div class="card-header" style="background-color:#ffc525">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-4"><b> VARIŞ İL / İLÇE</b></div>
+                                <div class="col-sm-8 col-md-8" style="text-align:right;">
+                                    <span>KAYSERİ/MELİKGAZİ</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="list-group list-group-flush">
+
+                            <li class="list-inline-item"><i></i><b> ALICI : </b> BU*** &#199;O*******</li>
+                            <li class="list-inline-item"><i></i><b> ALICI ADRES : </b> A-**** KA*</li>
+                            <li class="list-inline-item"><i></i><b> TESLİM ALAN : </b> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div id="shipmentGroup">
+                <div class="container">
+                    <div class="row justify-content-md-center">
+                        <div class="col col-sm-12 col-md-6" style="text-align:center">
+                            <a data-bs-toggle="collapse" href="#shipActivity" onclick="Tıkla();" id="activityButton" role="button" aria-expanded="false" aria-controls="shipActivity" data-parent="#shipmentGroup"><img src="https://gonderitakip.ptt.gov.tr/Content/images/altbtn1.png" class="img-fluid" /></a>
+                            <a data-bs-toggle="collapse" href="#ShipmentInfo" id="InfoButton" role="button" aria-expanded="false" aria-controls="ShipmentInfo" data-parent="#shipmentGroup"><img src="https://gonderitakip.ptt.gov.tr/Content/images/altbtn3.png" class="img-fluid" /></a>
+                            <a data-bs-toggle="collapse" href="#ShipmentFee" onclick="Tıkla1();" id="feeButton" role="button" aria-expanded="false" aria-controls="ShipmentFee" data-parent="#shipmentGroup"><img src="https://gonderitakip.ptt.gov.tr/Content/images/altbtn2.png" class="img-fluid" /></a>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align:center"><a class="no-print btn" href="javascript:printDiv('2710114200767', 'shipActivity','ShipmentFeePrint');"><img src="https://gonderitakip.ptt.gov.tr/Content/images/yazdir_buttonu-01.png" width="150" /></a></div>
+                <br />
+                <br />
+
+                <div class="collapse" id="shipActivity">
+                    <div class="column col-12 col-sm-12 col-xs-12">
+                        <div class="table-responsive" style="border-radius:20px">
+                            <table class="table ">
+                                <thead style="background-color:#00a6cf;  color:white;  align-items:center;">
+                                    <tr>
+                                        <th style="border: 1px solid white;">TARİH</th>
+                                        <th style="border: 1px solid white;">İŞLEM</th>
+                                        <th style="border: 1px solid white;">ŞUBE</th>
+                                        <th style="border: 1px solid white;">İL/İLÇE</th>
+                                        <th style="border: 1px solid white;">AÇIKLAMA</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody class="border-0 bg-light">
+
+                                    <tr>
+                                        <td style="border:none">23/12/2023 - 13:46:16</td>
+                                        <td style="border:none">TRANSFER S&#220;RECİNDE </td>
+                                        <td style="border:none"></td>
+                                        <td style="border:none"> / </td>
+                                        <td style="border:none"> </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="border:none">23/12/2023 - 14:52:07</td>
+                                        <td style="border:none">KABUL EDİLDİ </td>
+                                        <td style="border:none">ULUSLARARASI PİM</td>
+                                        <td style="border:none">İSTANBUL(AVR) / ARNAVUTK&#214;Y</td>
+                                        <td style="border:none"> </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="border:none">25/12/2023 - 17:17:17</td>
+                                        <td style="border:none">TRANSFER S&#220;RECİNDE </td>
+                                        <td style="border:none"></td>
+                                        <td style="border:none"> / </td>
+                                        <td style="border:none"> </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="border:none">27/12/2023 - 04:27:53</td>
+                                        <td style="border:none">İL İ&#199;İ AKTARMADA </td>
+                                        <td style="border:none">KAYSERİ PKDM</td>
+                                        <td style="border:none">KAYSERİ / MERKEZ</td>
+                                        <td style="border:none"> </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="collapse" id="ShipmentInfo">
+                    <section class="py-0 py-xl-5">
+                        <div class="container">
+                            <div class="row g-4">
+                                <!-- Counter item -->
+                                <div class="col-sm-6 col-xl-4">
+                                    <div class="d-flex justify-content-center align-items-center p-4 bg-info bg-opacity-10 rounded-3">
+                                        <span class="display-6 lh-1 text-info mb-0"><i class="fas fa-bus-alt"></i></span>
+                                        <div class="ms-4 h6 fw-normal">
+                                            <div class="d-flex">
+                                                <h5 class="purecounter mb-0 fw-bold" data-purecounter-start="0" data-purecounter-end="60" data-purecounter-delay="200">POSTAKARGO/NORMAL</h5>
+                                            </div>
+                                            <p class="mb-0">Gönderi Türü</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Counter item -->
+                                <div class="col-sm-6 col-xl-4">
+                                    <div class="d-flex justify-content-center align-items-center p-4 bg-warning2 bg-opacity-10 rounded-3">
+                                        <span class="display-6 lh-1 text-warning mb-0"><i class="fas fa-clipboard-list"></i></span>
+                                        <div class="ms-4 h6 fw-normal">
+                                            <div class="d-flex">
+                                                <h5 class="purecounter mb-0 fw-bold" data-purecounter-start="0" data-purecounter-end="10" data-purecounter-delay="200">71 gr / 1.00</h5>
+                                            </div>
+                                            <p class="mb-0">Ağırlık/Desi</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Counter item -->
+                                <div class="col-sm-6 col-xl-4">
+                                    <div class="d-flex justify-content-center align-items-center p-4 bg-blue bg-opacity-10 rounded-3">
+                                        <span class="display-6 lh-1 text-blue mb-0"><i class="fas fa-file-export"></i></span>
+                                        <div class="ms-4 h6 fw-normal">
+                                            <div class="d-flex">
+                                                <h5 class="purecounter mb-0 fw-bold" data-purecounter-start="0" data-purecounter-end="200" data-purecounter-delay="200"></h5>
+                                            </div>
+                                            <p class="mb-0">Ek Hizmetler</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </section>
+                    <!-- ======Counter END -->
+                </div>
+
+                <div class="collapse" id="ShipmentFee">
+                    <section class="py-0 py-xl-5">
+                        <div class="container">
+                            <div class="row g-4">
+                                <!-- Counter item -->
+                                <div class="col-sm-6 col-xl-4">
+                                    <div class="d-flex justify-content-center align-items-center p-4 bg-warning2 bg-opacity-10 rounded-3">
+                                        <span class="display-6 lh-1 text-warning mb-0"><i class="fas fa-bus-alt"></i></span>
+                                        <div class="ms-4 h6 fw-normal">
+                                            <div class="d-flex">
+                                                <h5 class="purecounter mb-0 fw-bold" data-purecounter-start="0" data-purecounter-end="10" data-purecounter-delay="200">0.00</h5>
+                                                <span class="mb-0 h5 parabirimitext">₺</span>
+                                            </div>
+                                            <p class="mb-0">Gümrük Vergisi</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Counter item -->
+                                <div class="col-sm-6 col-xl-4">
+                                    <div class="d-flex justify-content-center align-items-center p-4 bg-blue bg-opacity-10 rounded-3">
+                                        <span class="display-6 lh-1 text-blue mb-0"><i class="fas fa-file-export"></i></span>
+                                        <div class="ms-4 h6 fw-normal">
+                                            <div class="d-flex">
+                                                <h5 class="purecounter mb-0 fw-bold" data-purecounter-start="0" data-purecounter-end="200" data-purecounter-delay="200">0.00</h5>
+                                                <span class="mb-0 h5 parabirimitext">₺</span>
+                                            </div>
+                                            <p class="mb-0">Damga Vergisi</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Counter item -->
+                                <div class="col-sm-6 col-xl-4">
+                                    <div class="d-flex justify-content-center align-items-center p-4 bg-info bg-opacity-10 rounded-3">
+                                        <span class="display-6 lh-1 text-info mb-0"><i class="fas fa-clipboard-list"></i></span>
+                                        <div class="ms-4 h6 fw-normal">
+                                            <div class="d-flex">
+                                                <h5 class="purecounter mb-0 fw-bold" data-purecounter-start="0" data-purecounter-end="60" data-purecounter-delay="200">0.00</h5>
+                                                <span class="mb-0 h5 parabirimitext">₺</span>
+                                            </div>
+                                            <p class="mb-0">Gümrüğe Sunma Ücreti</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Counter item -->
+                                <div class="col-sm-6 col-xl-4">
+                                    <div class="d-flex justify-content-center align-items-center p-4 bg-warning2 bg-opacity-10 rounded-3">
+                                        <span class="display-6 lh-1 text-warning mb-0"><i class="fas fa-file-export"></i></span>
+                                        <div class="ms-4 h6 fw-normal">
+                                            <div class="d-flex">
+                                                <h5 class="purecounter mb-0 fw-bold" data-purecounter-start="0" data-purecounter-end="6" data-purecounter-delay="300">0.00</h5>
+                                                <span class="mb-0 h5 parabirimitext">₺</span>
+                                            </div>
+                                            <p class="mb-0">Yurtdışı İade Ücreti</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Counter item -->
+                                <div class="col-sm-6 col-xl-4">
+                                    <div class="d-flex justify-content-center align-items-center p-4 bg-blue bg-opacity-10 rounded-3">
+                                        <span class="display-6 lh-1 text-blue mb-0"><i class="fas fa-clipboard-list"></i></span>
+                                        <div class="ms-4 h6 fw-normal">
+                                            <div class="d-flex">
+                                                <h5 class="purecounter mb-0 fw-bold" data-purecounter-start="0" data-purecounter-end="6" data-purecounter-delay="300">0.00</h5>
+                                                <span class="mb-0 h5 parabirimitext">₺</span>
+                                            </div>
+                                            <p class="mb-0">Ödeme Şart Bedeli</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Counter item -->
+                                <div class="col-sm-6 col-xl-4">
+                                    <div class="d-flex justify-content-center align-items-center p-4 bg-info bg-opacity-10 rounded-3">
+                                        <span class="display-6 lh-1 text-info mb-0"><i class="fas fa-shopping-basket"></i></span>
+                                        <div class="ms-4 h6 fw-normal">
+                                            <div class="d-flex">
+                                                <h5 class="purecounter mb-0 fw-bold" data-purecounter-start="0" data-purecounter-end="6" data-purecounter-delay="300">0.00</h5>
+                                                <span class="mb-0 h5 parabirimitext">₺</span>
+                                            </div>
+                                            <p class="mb-0">Toplam</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+                    <!-- ======Counter END -->
+                </div>
+            </div>
+            <div class="collapse" style="display:none" id="ShipmentFeePrint">
+                <div class="column col-12 col-sm-12 col-xs-12">
+                    <div class="table-responsive">
+                        <table class="table ">
+                            <tbody class="border bg-black">
+                                <tr>
+                                    <td style="border:none">Gümrük Vergisi</td>
+                                    <td style="border:none"> : </td>
+                                    <td style="border:none">0.00</td>
+                                </tr>
+                                <tr>
+                                    <td style="border:none">Damga Vergisi</td>
+                                    <td style="border:none"> : </td>
+                                    <td style="border:none">0.00</td>
+                                </tr>
+                                <tr>
+                                    <td style="border:none">Gümrüğe Sunma Ücreti</td>
+                                    <td style="border:none"> : </td>
+                                    <td style="border:none">0.00</td>
+                                </tr>
+                                <tr>
+                                    <td style="border:none">Yurtdışı İade Ücreti</td>
+                                    <td style="border:none"> : </td>
+                                    <td style="border:none">0.00</td>
+                                </tr>
+                                <tr>
+                                    <td style="border:none">Ödeme Şart Bedeli</td>
+                                    <td style="border:none"> : </td>
+                                    <td style="border:none">0.00</td>
+                                </tr>
+                                <tr>
+                                    <td style="border:none">Toplam</td>
+                                    <td style="border:none"> : </td>
+                                    <td style="border:none">0.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <textarea id="printing-css" style="display:none;">
+        table, th, td{border: 1px solid #dee2e6; }
+        table{width: 100%; text-align: left;}
+        .title{color: #1AA7CD}
+        .no-print{display:none}
+    </textarea>
+
+            <iframe id="printing-frame" name="print_frame" src="about:blank" style="display:none;"></iframe>
+
+        </div>
+
+
+
+
+
+    </main>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <footer class="footer footerrenkmavi">
+        <div class="container">
+            <a href="https://twitter.com/PTTKurumsal" target="_blank" style="padding: 5px; color: white; text-decoration:none"><i class="fa fa-twitter">/</i><span>PTTKurumsal</span></a>
+            <a href="https://www.facebook.com/Ptt.Kurumsal" target="_blank" style="padding: 5px; color: white; text-decoration:none"><i class="fa fa-facebook">/</i><span>Ptt.Kurumsal</span></a>
+            <a href="https://www.instagram.com/pttkurumsal" target="_blank" style="padding: 5px; color: white; text-decoration:none"><i class=" fa fa-instagram">/</i><span>pttkurumsal</span></a>
+
+        </div>
+    </footer>
+
+
+</body>
+</html>
+
+<script>
+    function Tıkla() {
+        var modal = document.getElementById("shipActivity");
+
+        if (modal.style.display == "block") {
+            modal.style.display = "none";
+        }
+        else {
+            modal.style.display = "block"
+        }
+    }
+
+    function Tıkla1() {
+        var modal = document.getElementById("ShipmentFeePrint");
+
+        if (modal.style.display == "block") {
+            modal.style.display = "none";
+        }
+        else {
+            modal.style.display = "block"
+        }
+    }
+
+</script>
+
+
+

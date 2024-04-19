@@ -1,0 +1,54 @@
+﻿@model List<ResultFooterAddressDto>
+
+@{
+    ViewData["Title"] = "GetFooterAddress";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int Count = 0;
+}
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">İletişim ve Footer Alanı Adres Sayfası</h4>
+                <p class="card-subtitle mb-4">
+                    İletişim ve Footer kısımlarında yer alan adres bilgilerine ait işlemleri bu sayfadan gerçekleştirebilirsiniz. Harita bilgisini lokasyon değeri olarak google
+                    map üzerinden alabilirsiniz
+                </p>
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Adres</th>
+                                <th>Telefon</th>
+                                <th>Email</th>
+                                <th>Açıklama</th>
+                                <th>Sil</th>
+                                <th>Güncelleme</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var FooterAddress in Model)
+                            {
+                                Count++;
+
+                                <tr>
+                                    <td>@Count</td>
+                                    <td>@FooterAddress.Address</td>
+                                    <td>@FooterAddress.Phone</td>
+                                    <td>@FooterAddress.Mail</td>
+                                    <td>@FooterAddress.Description</td>
+                                    <td><a href="/CarBookAdmin/FooterAddress/DeleteFooterAddress?FooterAddressId=@FooterAddress.FooterAddressId" class="btn btn-outline-danger">Sil</a></td>
+                                    <td><a href="/CarBookAdmin/FooterAddress/GetFooterAddress?FooterAddressId=@FooterAddress.FooterAddressId" class="btn btn-outline-warning">Güncelle</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <a href="/CarBookAdmin/FooterAddress/CreateFooterAddress" class="btn btn-outline-primary">Yeni İletişim Bilgisi Girişi</a>
+            </div>
+        </div>
+    </div>
+</div>
+

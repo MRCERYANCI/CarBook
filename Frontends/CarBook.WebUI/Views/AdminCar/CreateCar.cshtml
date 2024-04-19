@@ -1,0 +1,64 @@
+﻿@model CreateCarDto
+
+
+@{
+    ViewData["Title"] = "CreateCar";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-body">
+
+        <h4 class="card-title">Yeni Araç Girişi</h4>
+        <p class="card-subtitle mb-12">Araç ile İlgili Temel Bilgileri Eksiksiz Doldurmanız Önemlidir. Veri Girişlerinden Sonra Kaydet Butonuna Tıklayarak İşlemi Tamamlayabilirsiniz.</p>
+
+        <form method="post">
+            <div class="form-group">
+                <label for="exampleInputMarka">Araç Markası</label>
+                @Html.DropDownListFor(x => x.BrandId, (List<SelectListItem>)ViewBag.GetBrand, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="exampleInputModel">Araç Modeli</label>
+                <input type="text" class="form-control" id="exampleInputModel" asp-for="Model" placeholder="Lütfen Araç Modelini Giriniz...">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputCoverImage">Kapak Fotoğrafı</label>
+                <input type="text" class="form-control" id="exampleInputCoverImage" asp-for="CoverImage" placeholder="Lütfen Kapak Fotoğrafını Giriniz...">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputCarKm">Araç Km</label>
+                <input type="text" class="form-control" id="exampleInputCarKm" asp-for="km" placeholder="Lütfen Araç Kilometrisini Giriniz...">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputTransmission">Araç Vites Türü</label>
+                <select asp-for="Transmission" class="form-control">
+                    <option value="Otomatik">Otomatik</option>
+                    <option value="Manuel">Manuel</option>
+                    <option value="Yarı Otomatik">Yarı Otomatik</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputTransmission">Araç Yakıt Türü</label>
+                <select asp-for="Fuel" class="form-control">
+                    <option value="Dizel">Dizel</option>
+                    <option value="Benzin">Benzin</option>
+                    <option value="Lpg - Benzin">Lpg - Benzin</option>
+                    <option value="CNG">CNG</option>
+                    <option value="Elektrikli">Elektrikli</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputCarSeat">Araç Koltuk Sayısı</label>
+                <input type="number" class="form-control" id="exampleInputCarSeat" asp-for="Seat" placeholder="Lütfen Araç Koltuk Sayısını Giriniz...">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputCarLuggage">Araç Bagaj Sayısı</label>
+                <input type="number" class="form-control" id="exampleInputCarLuggage" asp-for="Luggage" placeholder="Lütfen Araç Bagaj Sayısını Giriniz...">
+            </div>
+            
+            <button type="submit" class="btn btn-primary waves-effect waves-light">Kaydet</button>
+        </form>
+
+    </div>
+</div> 

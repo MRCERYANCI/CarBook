@@ -1,0 +1,26 @@
+﻿@model UpdateCategoryDto
+
+@{
+    ViewData["Title"] = "GetCategory";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+
+        <h4 class="card-title">Blog Kategori Güncelleme Alanı</h4>
+        <p class="card-subtitle mb-12">
+            Kategori alanına güncelleme işlemini aşağıdaki alandan yapabilirsiniz
+        </p>
+
+        <form method="post">
+            <div class="form-group">
+                <label for="exampleInputName">Kategori Adı</label>
+                <input type="text" class="form-control" id="exampleInputName" asp-for="Name" placeholder="Lütfen Kategori Adını Giriniz...">
+            </div>
+
+            <button type="submit" class="btn btn-primary waves-effect waves-light">Güncelle</button>
+        </form>
+    </div>
+</div>
+

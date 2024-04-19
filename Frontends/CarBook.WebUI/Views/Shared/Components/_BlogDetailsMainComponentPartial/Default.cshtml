@@ -1,0 +1,53 @@
+﻿@model ResultBlogDto
+
+@{
+    int MetinUzunluğu = Model.Description.Length;
+    int Sayi = 0;
+    int SayiFarki = 0;
+}
+
+<div class="col-md-8 ftco-animate">
+    <h2 class="mb-3">@Html.DisplayFor(x => x.Title)</h2>
+    @if (MetinUzunluğu > 360)
+    {
+        for (int i = 0; i < MetinUzunluğu; i++)
+        {
+            if (MetinUzunluğu > 360)
+            {
+                if (i != 0)
+                {
+                    if (i % 360 == 0)
+                    {
+                        <p>@Model.Description.Substring(Sayi, 360)</p>
+                        Sayi = i;
+
+                        SayiFarki = MetinUzunluğu - i;
+
+                        if (SayiFarki < 360)
+                        {
+                            <p>@Model.Description.Substring(Sayi, SayiFarki)</p>
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        <p>@Model.Description</p>
+    }
+    <p>
+        <img src="@Html.DisplayFor(x=>x.CoverImageUrl)" alt="" class="img-fluid">
+    </p>
+
+    @await Component.InvokeAsync("_BlogDetailCloudTagByBlogComponentPartial", new { BlogId = ViewBag.BlogId })
+
+    @await Component.InvokeAsync("_BlogDetailsAuthorAboutComponentPartial", new { BlogId = ViewBag.BlogId })
+
+    <div class="pt-5 mt-5">
+        <h3 class="mb-5">0 Yorum Sayısı</h3>
+        @await Component.InvokeAsync("_CommentListByBlogCommentComponentPartial")
+
+        @await Component.InvokeAsync("_AddCommentComponentPartial", new { BlogId = ViewBag.BlogId })
+    </div>
+</div> 

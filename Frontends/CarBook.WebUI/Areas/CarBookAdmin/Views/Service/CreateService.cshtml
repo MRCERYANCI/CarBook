@@ -1,0 +1,34 @@
+﻿@model CreateServiceDto
+
+@{
+    ViewData["Title"] = "CreateService";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+
+        <h4 class="card-title">Hizmet Sayfası Veri Girişi Alanı</h4>
+        <p class="card-subtitle mb-12">
+            Ödeme  Alanına Veri Girişini Aşağıdaki Panelden Yapabilirsiniz.
+        </p>
+
+        <form method="post">
+            <div class="form-group">
+                <label for="exampleInputName">Hizmet Adı</label>
+                <input type="text" class="form-control" id="exampleInputName" asp-for="Title" placeholder="Lütfen Hizmet Başlığını Giriniz...">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputName">Hizmet Icon</label>
+                <input type="text" class="form-control" id="exampleInputName" asp-for="IconUrl" placeholder="Lütfen Hizmet Icon Url'ini Giriniz...">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputName">Hizmet Icon</label>
+                <input type="text" class="form-control" id="exampleInputName" asp-for="Description" placeholder="Lütfen Hizmet Açıklamasını Giriniz...">
+            </div>
+
+            <button type="submit" class="btn btn-primary waves-effect waves-light">Kaydet</button>
+        </form>
+    </div>
+</div>
+

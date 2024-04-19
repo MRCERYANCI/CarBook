@@ -1,0 +1,31 @@
+﻿@model List<ResultBlogsWithsAuthorDto>
+@{
+    CarBook.Persistence.Context.CarBookContext carBookContext = new CarBook.Persistence.Context.CarBookContext();
+}
+
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            @foreach(var x in Model)
+            {
+                <div class="col-md-12 text-center d-flex ftco-animate">
+                    <div class="blog-entry justify-content-end mb-md-5">
+                        <a href="/Blog/BlogDetail?BlogId=@x.BlogId" class="block-20 img" style="background-image: url('@x.CoverImageUrl');">
+                        </a>
+                        <div class="text px-md-5 pt-4">
+                            <div class="meta mb-3">
+                                <div><a href="/Blog/BlogDetail?BlogId=@x.BlogId">@(((DateTime)x.CreatedDate).ToString("MMMM dd")) .@(((DateTime)x.CreatedDate).ToString("yyyy"))</a></div>
+                                <div><a href="/Blog/BlogDetail?BlogId=@x.BlogId">@x.Name</a></div>
+                                <div><a href="/Blog/BlogDetail?BlogId=@x.BlogId" class="meta-chat"><span class="icon-chat"></span> @carBookContext.Comments.Count(y => y.BlogId == x.BlogId)</a></div>
+                            </div>
+                            <h3 class="heading mt-2"><a href="/Blog/BlogDetail?BlogId=@x.BlogId">@x.Title</a></h3>
+                            <p>@x.Description.Substring(0,172)</p>
+                            <p><a href="/Blog/BlogDetail?BlogId=@x.BlogId" class="btn btn-primary">Devamını Oku <span class="icon-long-arrow-right"></span></a></p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

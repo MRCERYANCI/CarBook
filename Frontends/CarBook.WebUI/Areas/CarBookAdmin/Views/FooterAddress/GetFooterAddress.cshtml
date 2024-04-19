@@ -1,0 +1,41 @@
+﻿@model UpdateFooterAddressDto
+
+@{
+    ViewData["Title"] = "GetFooterAddress";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-body">
+
+        <h4 class="card-title">Adres Bilgisi Güncellemesi</h4>
+        <p class="card-subtitle mb-12">
+            Adres Alanına Veri Girişini Aşağıdaki Panelden Yapabilirsiniz.
+        </p>
+
+        <form method="post">
+            <div class="form-group">
+                <input type="hidden" asp-for="FooterAddressId">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputName">Email Adresi</label>
+                <input type="email" class="form-control" id="exampleInputName" asp-for="Mail" placeholder="Lütfen Mail Bilgisini Giriniz...">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputName">Telefon Numarası</label>
+                <input type="tel" class="form-control" id="exampleInputName" asp-for="Phone" placeholder="Lütfen Telefon Numarasını Giriniz...">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputName">Adres Bilgisi</label>
+                <input type="text" class="form-control" id="exampleInputName" asp-for="Address" placeholder="Lütfen Adres Bilgisini Giriniz...">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputName">Açıklama Alanı</label>
+                <textarea class="form-control" asp-for="Description" placeholder="Lütfen Açıklama Alanını Giriniz..." rows="10"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary waves-effect waves-light">Güncelle</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+﻿@model ResultAboutDto
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Ana Sayfa Banner Alanı</h4>
+                <p class="card-subtitle mb-4">
+                    Ana sayfanın hakkımda sayfasının "hakkımda" alanında bulunan bilgileri aşağıdan düzenleyebilirsiniz. Tema bütünlüğünün bozulmaması için adına lütfen
+                    sadece 1 tane veri girişi yapınız. Aksi durumlarda tema bütünlüğü bozulacaktır.
+                </p>
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th>Başlık</th>
+                                <th>Açıklama</th>
+                                <th>Görsel</th>
+                                <th>Sil</th>
+                                <th>Güncelleme</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Html.DisplayFor(x => x.Title)</td>
+                                <td>@Html.DisplayFor(x => x.Description)</td>
+                                <td><img src="@Html.DisplayFor(x => x.ImageUrl)" width="70" height="70" /></td>
+                                <td><a href="/CarBookAdmin/About/DeleteAbout?AboutId=@Html.DisplayFor(x=>x.AboutId)" class="btn btn-outline-danger">Sil</a></td>
+                                <td><a href="/CarBookAdmin/About/GetAbout?AboutId=@Html.DisplayFor(x=>x.AboutId)" class="btn btn-outline-warning">Güncelle</a></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <a href="/CarBookAdmin/About/CreateAbout" class="btn btn-outline-primary">Yeni Hakkımızda Girişi</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

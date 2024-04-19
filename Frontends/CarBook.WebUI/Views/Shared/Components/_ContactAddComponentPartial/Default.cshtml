@@ -1,0 +1,19 @@
+﻿@model CreateContactDto
+
+<form method="post" asp-action="NewAddContact" asp-controller="Contact">
+    <div class="form-group">
+        <input type="text" asp-for="Name" class="form-control" placeholder="Adınızı Soyadınızı Giriniz..." required>
+    </div>
+    <div class="form-group">
+        <input type="email" asp-for="Email" class="form-control" placeholder="Mail Adresinizi Giriniz..." required>
+    </div>
+    <div class="form-group">
+        <input type="text" asp-for="Subject" class="form-control" placeholder="Mesaj Konusunu Giriniz..." required>
+    </div>
+    <div class="form-group">
+        <textarea asp-for ="Message" id="" cols="30" rows="7" class="form-control" placeholder="Öneri veya Şikayet Mesajınızı Giriniz..." required></textarea>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Mesajı Gönder" class="btn btn-primary py-3 px-5">
+    </div>
+</form>

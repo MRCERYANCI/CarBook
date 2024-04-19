@@ -1,0 +1,41 @@
+﻿@model CreateBannerDto
+
+@{
+    ViewData["Title"] = "CreateBanner";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+
+        <h4 class="card-title">Yeni Banner Bilgisi Girişi</h4>
+        <p class="card-subtitle mb-12">Banner Alanıma Veri Girişini Aşağıdaki Panelden Yapabilirsiniz. Tasarımda Bozulma Olmaması Adına Yeni Bir Banner Girişi Yatıktan Sonra
+            Önceki Banner Alanını Silin, Sadece 1 Tane Banner Verisi Kalmalıdır.
+        </p>
+
+        <form method="post">
+            <div class="form-group">
+                <label for="exampleInputName">Başlık</label>
+                <input type="text" class="form-control" id="exampleInputName" asp-for="Title" placeholder="Lütfen Banner Başlığını Giriniz...">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputName">Açıklama</label>
+                <input type="text" class="form-control" id="exampleInputName" asp-for="Description" placeholder="Lütfen Banner Açıklamasını Giriniz...">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputName">Video Url</label>
+                <input type="text" class="form-control" id="exampleInputName" asp-for="VideoUrl" placeholder="Lütfen Banner VideoUrl Giriniz...">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputName">Video Açıklaması</label>
+                <input type="text" class="form-control" id="exampleInputName" asp-for="VideoDescription" placeholder="Lütfen Banner Video Açıklamasını Giriniz...">
+            </div>
+
+            <button type="submit" class="btn btn-primary waves-effect waves-light">Kaydet</button>
+        </form>
+    </div>
+</div>
+
