@@ -36,17 +36,17 @@ namespace CarBook.Persistence.Repositories.StatisticsRepositories
         public decimal GetAvgRentPriceForDaily()
         {
             //Select CONVERT(VARCHAR(15),Cast(AVG(Amount) as MONEY)) From CarPricings Where PricingId = (Select PricingId From Pricings Where Name = 'Günlük')
-            return _carBookContext.CarPricings.Where(x=>x.CarPricingId == _carBookContext.Pricings.Where(y=>y.Name == "Günlük").Select(z=>z.PricingId).FirstOrDefault()).Average(x => x.Amount);
+            return _carBookContext.CarPricings.Where(x=>x.PricingId == _carBookContext.Pricings.Where(y=>y.Name == "Günlük").Select(z=>z.PricingId).FirstOrDefault()).Average(x => x.Amount);
         }
 
         public decimal GetAvgRentPriceForMonthly()
         {
-            return _carBookContext.CarPricings.Where(x => x.CarPricingId == _carBookContext.Pricings.Where(y => y.Name == "Aylık").Select(z => z.PricingId).FirstOrDefault()).Average(x => x.Amount);
+            return _carBookContext.CarPricings.Where(x => x.PricingId == _carBookContext.Pricings.Where(y => y.Name == "Aylık").Select(z => z.PricingId).FirstOrDefault()).Average(x => x.Amount);
         }
 
         public decimal GetAvgRentPriceForWeekly()
         {
-            return _carBookContext.CarPricings.Where(x => x.CarPricingId == _carBookContext.Pricings.Where(y => y.Name == "Haftalık").Select(z => z.PricingId).FirstOrDefault()).Average(x => x.Amount);
+            return _carBookContext.CarPricings.Where(x => x.PricingId == _carBookContext.Pricings.Where(y => y.Name == "Haftalık").Select(z => z.PricingId).FirstOrDefault()).Average(x => x.Amount);
         }
 
         public int GetBlogCount()
