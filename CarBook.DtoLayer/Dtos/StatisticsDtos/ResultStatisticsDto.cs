@@ -13,5 +13,12 @@ namespace CarBook.DtoLayer.Dtos.StatisticsDtos
         public int authorCount { get; set; }
         public int blogCount { get; set; }
         public int brandCount { get; set; }
+        public decimal getAvgPriceForDaily { get; set; }
+        public decimal avgRentPriceForWeekly { get; set; }
+        public decimal avgRentPriceForMonthly { get; set; }
+        public int carCountByTranmissionIsAuto { get; set; }
+        public int carCountByKmSmallerThen1000 { get; set; }
+        public int carCountByFuelGasolineOrDiesel { get; set; }
+        public int carCountByFuelElectric { get; set; }
     }
 }

@@ -70,6 +70,77 @@ namespace CarBook.WebUI.Areas.CarBookAdmin.Controllers
                 ViewBag.BrandCount = GetBrandCountvalues.brandCount;
             }
             #endregion
+
+            #region GetAvgRentPriceForDaily
+            var responseGetAvgRentPriceForDailyMessage = await client.GetAsync("https://localhost:7125/api/Statistics/GetAvgRentPriceForDaily");
+            if (responseGetAvgRentPriceForDailyMessage.IsSuccessStatusCode)//200 ile 299 arasında bir sayı dönerse true döneceğinden başarılı false dönerse başarısız
+            {
+                var GetAvgRentPriceForDailyjsondata = await responseGetAvgRentPriceForDailyMessage.Content.ReadAsStringAsync();//Bu veri json trü
+                var GetAvgRentPriceForDailyvalues = JsonConvert.DeserializeObject<ResultStatisticsDto>(GetAvgRentPriceForDailyjsondata); //Json Türünü Normale Çevirmek için DeserializeObject Kullanılır
+                ViewBag.AvgRentPriceForDailyCount = GetAvgRentPriceForDailyvalues.getAvgPriceForDaily.ToString("C");
+            }
+            #endregion
+
+            #region GetAvgRentPriceForWeekly
+            var responseGetAvgRentPriceForWeeklyMessage = await client.GetAsync("https://localhost:7125/api/Statistics/GetAvgRentPriceForWeekly");
+            if (responseGetAvgRentPriceForWeeklyMessage.IsSuccessStatusCode)//200 ile 299 arasında bir sayı dönerse true döneceğinden başarılı false dönerse başarısız
+            {
+                var GetAvgRentPriceForWeeklyjsondata = await responseGetAvgRentPriceForWeeklyMessage.Content.ReadAsStringAsync();//Bu veri json trü
+                var GetAvgRentPriceForWeeklyvalues = JsonConvert.DeserializeObject<ResultStatisticsDto>(GetAvgRentPriceForWeeklyjsondata); //Json Türünü Normale Çevirmek için DeserializeObject Kullanılır
+                ViewBag.AvgRentPriceForWeekly = GetAvgRentPriceForWeeklyvalues.avgRentPriceForWeekly.ToString("C");
+            }
+            #endregion
+
+            #region GetAvgRentPriceForMonthly
+            var responseGetAvgRentPriceForMonthlyMessage = await client.GetAsync("https://localhost:7125/api/Statistics/GetAvgRentPriceForMonthly");
+            if (responseGetAvgRentPriceForMonthlyMessage.IsSuccessStatusCode)//200 ile 299 arasında bir sayı dönerse true döneceğinden başarılı false dönerse başarısız
+            {
+                var GetAvgRentPriceForMonthlyjsondata = await responseGetAvgRentPriceForMonthlyMessage.Content.ReadAsStringAsync();//Bu veri json trü
+                var GetAvgRentPriceForMonthlyvalues = JsonConvert.DeserializeObject<ResultStatisticsDto>(GetAvgRentPriceForMonthlyjsondata); //Json Türünü Normale Çevirmek için DeserializeObject Kullanılır
+                ViewBag.AvgRentPriceForMonthly = GetAvgRentPriceForMonthlyvalues.avgRentPriceForMonthly.ToString("C");
+            }
+            #endregion
+
+            #region GetCarCountByTranmissionIsAuto
+            var responseGetCarCountByTranmissionIsAutoMessage = await client.GetAsync("https://localhost:7125/api/Statistics/GetCarCountByTranmissionIsAuto");
+            if (responseGetCarCountByTranmissionIsAutoMessage.IsSuccessStatusCode)//200 ile 299 arasında bir sayı dönerse true döneceğinden başarılı false dönerse başarısız
+            {
+                var GetCarCountByTranmissionIsAutojsondata = await responseGetCarCountByTranmissionIsAutoMessage.Content.ReadAsStringAsync();//Bu veri json trü
+                var GetCarCountByTranmissionIsAutovalues = JsonConvert.DeserializeObject<ResultStatisticsDto>(GetCarCountByTranmissionIsAutojsondata); //Json Türünü Normale Çevirmek için DeserializeObject Kullanılır
+                ViewBag.CarCountByTranmissionIsAuto = GetCarCountByTranmissionIsAutovalues.carCountByTranmissionIsAuto;
+            }
+            #endregion
+
+            #region GetCarCountByKmSmallerThen1000
+            var responseGetCarCountByKmSmallerThen1000Message = await client.GetAsync("https://localhost:7125/api/Statistics/GetCarCountByKmSmallerThen1000");
+            if (responseGetCarCountByKmSmallerThen1000Message.IsSuccessStatusCode)//200 ile 299 arasında bir sayı dönerse true döneceğinden başarılı false dönerse başarısız
+            {
+                var GetCarCountByKmSmallerThen1000jsondata = await responseGetCarCountByKmSmallerThen1000Message.Content.ReadAsStringAsync();//Bu veri json trü
+                var GetCarCountByKmSmallerThen1000values = JsonConvert.DeserializeObject<ResultStatisticsDto>(GetCarCountByKmSmallerThen1000jsondata); //Json Türünü Normale Çevirmek için DeserializeObject Kullanılır
+                ViewBag.CarCountByKmSmallerThen1000 = GetCarCountByKmSmallerThen1000values.carCountByKmSmallerThen1000;
+            }
+            #endregion
+
+            #region GetCarCountByFuelGasolineOrDiesel
+            var responseGetCarCountByFuelGasolineOrDieselMessage = await client.GetAsync("https://localhost:7125/api/Statistics/GetCarCountByFuelGasolineOrDiesel");
+            if (responseGetCarCountByFuelGasolineOrDieselMessage.IsSuccessStatusCode)//200 ile 299 arasında bir sayı dönerse true döneceğinden başarılı false dönerse başarısız
+            {
+                var GetCarCountByFuelGasolineOrDieseljsondata = await responseGetCarCountByFuelGasolineOrDieselMessage.Content.ReadAsStringAsync();//Bu veri json trü
+                var GetCarCountByFuelGasolineOrDieselvalues = JsonConvert.DeserializeObject<ResultStatisticsDto>(GetCarCountByFuelGasolineOrDieseljsondata); //Json Türünü Normale Çevirmek için DeserializeObject Kullanılır
+                ViewBag.CarCountByFuelGasolineOrDieselvalues = GetCarCountByFuelGasolineOrDieselvalues.carCountByFuelGasolineOrDiesel;
+            }
+            #endregion
+
+            #region GetCarCountByFuelElectric
+            var responseGetCarCountByFuelElectricMessage = await client.GetAsync("https://localhost:7125/api/Statistics/GetCarCountByFuelElectric");
+            if (responseGetCarCountByFuelElectricMessage.IsSuccessStatusCode)//200 ile 299 arasında bir sayı dönerse true döneceğinden başarılı false dönerse başarısız
+            {
+                var GetCarCountByFuelElectricjsondata = await responseGetCarCountByFuelElectricMessage.Content.ReadAsStringAsync();//Bu veri json trü
+                var GetCarCountByFuelElectricvalues = JsonConvert.DeserializeObject<ResultStatisticsDto>(GetCarCountByFuelElectricjsondata); //Json Türünü Normale Çevirmek için DeserializeObject Kullanılır
+                ViewBag.CarCountByFuelElectricvalues = GetCarCountByFuelElectricvalues.carCountByFuelElectric;
+            }
+            #endregion
+
             return View();
         }
     }
