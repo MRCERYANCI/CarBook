@@ -1,4 +1,7 @@
 ﻿using CarBook.DtoLayer.Dtos.TesrimonialDtos;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Drive.v3;
+using Google.Apis.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
@@ -10,10 +13,51 @@ namespace CarBook.WebUI.Areas.CarBookAdmin.Controllers
     public class TestimonialController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly string credentialsPath = "C:\\Users\\burak\\OneDrive\\Masaüstü\\Web Yazılımları\\Araba Kiralama Yazılımı\\CarBook\\Frontends\\CarBook.WebUI\\wwwroot\\Google Api\\credentials.json";
+        private readonly string folderid = "1jNhPK8kR1Wu3fYC6J0sG73TIVXStC9uq";
+        string[] filesToUPload = new string[1];
 
         public TestimonialController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
+        }
+
+        private static void UploadsFilesToGoogleDrive(string credentialsPath, string folderid, string[] filesToUPload)
+        {
+            GoogleCredential credential;
+            using (var stream = new FileStream(credentialsPath, FileMode.Open, FileAccess.Read))
+            {
+                credential = GoogleCredential.FromStream(stream).CreateScoped(new[]
+                {
+                    DriveService.ScopeConstants.DriveFile
+                });
+
+                var service = new DriveService(new BaseClientService.Initializer()
+                {
+                    HttpClientInitializer = credential,
+                    ApplicationName = "Google Drive Upload Console App"
+                });
+
+                foreach (var filePath in filesToUPload)
+                {
+                    var fileMetaData = new Google.Apis.Drive.v3.Data.File()
+                    {
+                        Name = Path.GetFileName(filePath),
+                        Parents = new List<string> { folderid }
+                    };
+
+                    FilesResource.CreateMediaUpload request;
+                    using (var streamm = new FileStream(filePath, FileMode.Open))
+                    {
+                        request = service.Files.Create(fileMetaData, streamm, "");
+                        request.Fields = "id";
+                        request.Upload();
+                    }
+
+                    var uploadFile = request.ResponseBody;
+                    //Console.WriteLine($"File '{fileMetaData.Name}' uploaded with ID: {uploadFile.Id}");
+                }
+            }
         }
 
         [Route("Index")]
@@ -44,14 +88,24 @@ namespace CarBook.WebUI.Areas.CarBookAdmin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateTestimonial(CreateTestimonialDto createTestimonialDto)
         {
-            var client = _httpClientFactory.CreateClient();//İstemciyi Oluştruduk
-            var jsonData = JsonConvert.SerializeObject(createTestimonialDto);//Modelden gelen veriyi Json Türüne Çevirdik, Normal Veriyi Json Türüne Çevirmek için SerializeObject Kullanılır
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");//İçeriğin dönüşümü için kullancaz(content,encoding,mediaType)
-            var responseMessage = await client.PostAsync("https://localhost:7125/api/Testimonial", stringContent);
-            if (responseMessage.IsSuccessStatusCode)//Eğer istek attığımız apiden(responsemessage) 200-299 arası durum kodu dönerse
+            if (createTestimonialDto.ImageUrl1 != null)
             {
-                return RedirectToAction("Index", "Testimonial", new { area = "CarBookAdmin" });
+                var extension = Path.GetFullPath(createTestimonialDto.ImageUrl1.FileName);
+                filesToUPload[0] = extension;
+
+                UploadsFilesToGoogleDrive(credentialsPath, folderid, filesToUPload);
+
+                createTestimonialDto.ImageUrl = "deneme";
+                var client = _httpClientFactory.CreateClient();//İstemciyi Oluştruduk
+                var jsonData = JsonConvert.SerializeObject(createTestimonialDto);//Modelden gelen veriyi Json Türüne Çevirdik, Normal Veriyi Json Türüne Çevirmek için SerializeObject Kullanılır
+                StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");//İçeriğin dönüşümü için kullancaz(content,encoding,mediaType)
+                var responseMessage = await client.PostAsync("https://localhost:7125/api/Testimonial", stringContent);
+                if (responseMessage.IsSuccessStatusCode)//Eğer istek attığımız apiden(responsemessage) 200-299 arası durum kodu dönerse
+                {
+                    return RedirectToAction("Index", "Testimonial", new { area = "CarBookAdmin" });
+                }
             }
+
             return View();
         }
 
