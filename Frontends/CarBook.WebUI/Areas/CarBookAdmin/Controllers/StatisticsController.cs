@@ -141,6 +141,53 @@ namespace CarBook.WebUI.Areas.CarBookAdmin.Controllers
             }
             #endregion
 
+            #region GetCarBrandAndModelByRentPriceDailyMax
+            var responseGetCarBrandAndModelByRentPriceDailyMaxMessage = await client.GetAsync("https://localhost:7125/api/Statistics/GetCarBrandAndModelByRentPriceDailyMax");
+            if (responseGetCarBrandAndModelByRentPriceDailyMaxMessage.IsSuccessStatusCode)//200 ile 299 arasında bir sayı dönerse true döneceğinden başarılı false dönerse başarısız
+            {
+                var GetCarBrandAndModelByRentPriceDailyMaxjsondata = await responseGetCarBrandAndModelByRentPriceDailyMaxMessage.Content.ReadAsStringAsync();//Bu veri json trü
+                var GetCarBrandAndModelByRentPriceDailyMaxvalues = JsonConvert.DeserializeObject<ResultStatisticsDto>(GetCarBrandAndModelByRentPriceDailyMaxjsondata); //Json Türünü Normale Çevirmek için DeserializeObject Kullanılır
+                ViewBag.GetCarBrandAndModelByRentPriceDailyMax = GetCarBrandAndModelByRentPriceDailyMaxvalues.carBrandAndModelByRentPriceDailyMax;
+            }
+            #endregion
+
+            #region GetCarBrandAndModelByRentPriceDailyMin
+            var responseGetCarBrandAndModelByRentPriceDailyMinMessage = await client.GetAsync("https://localhost:7125/api/Statistics/GetCarBrandAndModelByRentPriceDailyMin");
+            if (responseGetCarBrandAndModelByRentPriceDailyMinMessage.IsSuccessStatusCode)//200 ile 299 arasında bir sayı dönerse true döneceğinden başarılı false dönerse başarısız
+            {
+                var GetCarBrandAndModelByRentPriceDailyMinjsondata = await responseGetCarBrandAndModelByRentPriceDailyMinMessage.Content.ReadAsStringAsync();//Bu veri json trü
+                var GetCarBrandAndModelByRentPriceDailyMinvalues = JsonConvert.DeserializeObject<ResultStatisticsDto>(GetCarBrandAndModelByRentPriceDailyMinjsondata); //Json Türünü Normale Çevirmek için DeserializeObject Kullanılır
+                ViewBag.GetCarBrandAndModelByRentPriceDailyMin = GetCarBrandAndModelByRentPriceDailyMinvalues.carBrandAndModelByRentPriceDailyMin;
+            }
+            #endregion
+
+            #region GetBrandNameByMaxCar
+            var responseGetBrandNameByMaxCarMessage = await client.GetAsync("https://localhost:7125/api/Statistics/GetBrandNameByMaxCar");
+            if (responseGetBrandNameByMaxCarMessage.IsSuccessStatusCode)//200 ile 299 arasında bir sayı dönerse true döneceğinden başarılı false dönerse başarısız
+            {
+                var GetBrandNameByMaxCarjsondata = await responseGetBrandNameByMaxCarMessage.Content.ReadAsStringAsync();//Bu veri json trü
+                var GetBrandNameByMaxCarvalues = JsonConvert.DeserializeObject<ResultStatisticsDto>(GetBrandNameByMaxCarjsondata); //Json Türünü Normale Çevirmek için DeserializeObject Kullanılır
+                ViewBag.GetBrandNameByMaxCarvalues = GetBrandNameByMaxCarvalues.brandNameByMaxCar;
+            }
+            #endregion
+
+            #region GetBlogTitleByMaxBlogComment
+            var responseGetBlogTitleByMaxBlogCommentMessage = await client.GetAsync("https://localhost:7125/api/Statistics/GetBlogTitleByMaxBlogComment");
+            if (responseGetBlogTitleByMaxBlogCommentMessage.IsSuccessStatusCode)//200 ile 299 arasında bir sayı dönerse true döneceğinden başarılı false dönerse başarısız
+            {
+                var GetBlogTitleByMaxBlogCommentjsondata = await responseGetBlogTitleByMaxBlogCommentMessage.Content.ReadAsStringAsync();//Bu veri json trü
+                var GetBlogTitleByMaxBlogCommentvalues = JsonConvert.DeserializeObject<ResultStatisticsDto>(GetBlogTitleByMaxBlogCommentjsondata); //Json Türünü Normale Çevirmek için DeserializeObject Kullanılır
+                if (GetBlogTitleByMaxBlogCommentvalues.blogTitleByMaxBlogComment.Length > 20)
+                {
+                    ViewBag.GetBlogTitleByMaxBlogCommentvalues = GetBlogTitleByMaxBlogCommentvalues.blogTitleByMaxBlogComment.Substring(0, 20) + "...";
+                    ViewBag.GetBlogTitleByMaxBlogCommentvalues1 = GetBlogTitleByMaxBlogCommentvalues.blogTitleByMaxBlogComment;
+                }
+                else
+                    ViewBag.GetBlogTitleByMaxBlogCommentvalues = GetBlogTitleByMaxBlogCommentvalues.blogTitleByMaxBlogComment;
+
+
+            }
+            #endregion
             return View();
         }
     }

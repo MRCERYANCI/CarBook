@@ -31,5 +31,11 @@ namespace CarBook.Domain.Entities
 
         //Car CardPricing Arası İlişki
         public ICollection<CarPricing> CardPricings { get; set; }
+
+        //Car RentACar Arası İlişki
+        public ICollection<RentACar> RentACars { get; set; }
+
+        //Car RentACarProcess Arası İlişki
+        public ICollection<RentACarProcess> RentACarProcesses { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using CarBook.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarBook.Persistence.Migrations
 {
     [DbContext(typeof(CarBookContext))]
-    partial class CarBookContextModelSnapshot : ModelSnapshot
+    [Migration("20240427185602_CustomeTable")]
+    partial class CustomeTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -531,8 +534,8 @@ namespace CarBook.Persistence.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DropOfDate")
-                        .HasColumnType("Date");
+                    b.Property<DateOnly>("DropOfDate")
+                        .HasColumnType("date");
 
                     b.Property<int>("DropOfLocationId")
                         .HasColumnType("int");
@@ -540,11 +543,11 @@ namespace CarBook.Persistence.Migrations
                     b.Property<string>("DropOffDescription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<TimeSpan>("DropOffTime")
+                    b.Property<TimeOnly>("DropOffTime")
                         .HasColumnType("time");
 
-                    b.Property<DateTime>("PickUpDate")
-                        .HasColumnType("Date");
+                    b.Property<DateOnly>("PickUpDate")
+                        .HasColumnType("date");
 
                     b.Property<string>("PickUpDescription")
                         .HasColumnType("nvarchar(max)");
@@ -552,7 +555,7 @@ namespace CarBook.Persistence.Migrations
                     b.Property<int>("PickUpLocationId")
                         .HasColumnType("int");
 
-                    b.Property<TimeSpan>("PickUpTime")
+                    b.Property<TimeOnly>("PickUpTime")
                         .HasColumnType("time");
 
                     b.Property<decimal>("TotalPrice")

@@ -10,5 +10,13 @@ namespace CarBook.Domain.Entities
 	{
         public int LocationId { get; set; }
         public string Name { get; set; }
+
+
+        //Location RentACar Arası İlişki
+        public ICollection<RentACar> RentACars { get; set; }
+
+        //Location RentACarProcess Arası İlişki
+        public ICollection<RentACarProcess> RentACarProcessPickUpLocation { get; set; }
+        public ICollection<RentACarProcess> RentACarProcessDropOffLocation { get; set; }
     }
 }

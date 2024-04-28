@@ -6,7 +6,7 @@ namespace CarBook.WebUI.Controllers
 	{
 		public IActionResult Index()
 		{
-			ViewBag.MainCover = "HAKKIMIZDA";
+			ViewBag.MainCover = "HAKKIMIZDA ";
 			return View();
 		}
 	}

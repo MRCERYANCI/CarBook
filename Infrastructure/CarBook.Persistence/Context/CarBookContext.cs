@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace CarBook.Persistence.Context
 {
-	public class CarBookContext : DbContext
-	{
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-		{
-			optionsBuilder.UseSqlServer("Server=192.168.1.56; Database=CarBookDb; User=sa; Password=QFC7LGmuCJa205; TrustServerCertificate=true");
-		}
+    public class CarBookContext : DbContext
+    {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Server=192.168.1.56; Database=CarBookDb; User=sa; Password=QFC7LGmuCJa205; TrustServerCertificate=true");
+        }
 
         public DbSet<About> Abouts { get; set; }
         public DbSet<Banner> Banners { get; set; }
@@ -35,5 +35,15 @@ namespace CarBook.Persistence.Context
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<TagCloud> TagClouds { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<RentACar> rentACars { get; set; }
+        public DbSet<RentACarProcess> RentACarProcesses { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<RentACarProcess>().HasOne(x => x.PickUpLocation).WithMany(y => y.RentACarProcessPickUpLocation).HasForeignKey(z => z.PickUpLocationId).OnDelete(DeleteBehavior.ClientSetNull);
+            builder.Entity<RentACarProcess>().HasOne(x => x.DropOffLocation).WithMany(y => y.RentACarProcessDropOffLocation).HasForeignKey(z => z.DropOfLocationId).OnDelete(DeleteBehavior.ClientSetNull);
+            base.OnModelCreating(builder);
+        }
     }
 }
