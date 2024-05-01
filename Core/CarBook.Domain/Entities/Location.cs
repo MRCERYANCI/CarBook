@@ -18,5 +18,9 @@ namespace CarBook.Domain.Entities
         //Location RentACarProcess Arası İlişki
         public ICollection<RentACarProcess> RentACarProcessPickUpLocation { get; set; }
         public ICollection<RentACarProcess> RentACarProcessDropOffLocation { get; set; }
+
+        //Reseervation RentACarProcess Arası İlişki
+        public ICollection<Reservation> ReservationProcessPickUpLocation { get; set; }
+        public ICollection<Reservation> ReservationProcessDropOffLocation { get; set; }
     }
 }

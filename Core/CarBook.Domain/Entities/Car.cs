@@ -37,5 +37,8 @@ namespace CarBook.Domain.Entities
 
         //Car RentACarProcess Arası İlişki
         public ICollection<RentACarProcess> RentACarProcesses { get; set; }
+
+        //Car Reservastion Arası İlişki
+        public ICollection<Reservation> Reservations { get; set; }
     }
 }

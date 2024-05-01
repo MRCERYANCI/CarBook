@@ -38,11 +38,15 @@ namespace CarBook.Persistence.Context
         public DbSet<RentACar> rentACars { get; set; }
         public DbSet<RentACarProcess> RentACarProcesses { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<RentACarProcess>().HasOne(x => x.PickUpLocation).WithMany(y => y.RentACarProcessPickUpLocation).HasForeignKey(z => z.PickUpLocationId).OnDelete(DeleteBehavior.ClientSetNull);
             builder.Entity<RentACarProcess>().HasOne(x => x.DropOffLocation).WithMany(y => y.RentACarProcessDropOffLocation).HasForeignKey(z => z.DropOfLocationId).OnDelete(DeleteBehavior.ClientSetNull);
+
+            builder.Entity<Reservation>().HasOne(x => x.PickUpLocation).WithMany(y => y.ReservationProcessPickUpLocation).HasForeignKey(z => z.PickUpLocationId).OnDelete(DeleteBehavior.ClientSetNull);
+            builder.Entity<Reservation>().HasOne(x => x.DropOffLocation).WithMany(y => y.ReservationProcessDropOffLocation).HasForeignKey(z => z.DropOfLocationId).OnDelete(DeleteBehavior.ClientSetNull);
             base.OnModelCreating(builder);
         }
     }

@@ -29,7 +29,7 @@ namespace CarBook.WebUI.Controllers
 
 
             var client = _httpClientFactory.CreateClient();//İstemciyi Oluştruduk          
-            var responseMessage = await client.GetAsync($"https://localhost:7125/api/RentACars?LocationId={LocationId}&Available=false");
+            var responseMessage = await client.GetAsync($"https://localhost:7125/api/RentACars?LocationId={LocationId}&Available=true");
             if (responseMessage.IsSuccessStatusCode)//Eğer istek attığımız apiden(responsemessage) 200-299 arası durum kodu dönerse
             {
                 var jsondata = await responseMessage.Content.ReadAsStringAsync();
