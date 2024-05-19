@@ -23,5 +23,6 @@ namespace CarBook.DtoLayer.Dtos.ReservationDtos
         public int Age { get; set; }
         public DateTime BirthdayDate { get; set; }
         public int DriverLicanseYear { get; set; }
+        public string Status { get; set; }
     }
 }

@@ -29,5 +29,6 @@ namespace CarBook.Domain.Entities
         [DataType(DataType.Date)]
         public DateTime BirthdayDate { get; set; }
         public int DriverLicanseYear { get; set; }
+        public string Status { get; set; }
     }
 }
