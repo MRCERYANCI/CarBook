@@ -25,7 +25,7 @@ namespace CarBook.Persistence.Repositories.CarPricingRepositories
            List<CarPricingViewModel> carPricingViewModels = new List<CarPricingViewModel>();
             using(var command = _context.Database.GetDbConnection().CreateCommand())
             {
-                command.CommandText = "Select * From (Select Model,CoverImage,Name,PricingId,Amount From CarPricings inner join Cars on CarPricings.CarId=Cars.CarId inner join Brands on Brands.BrandId=Cars.BrandId) As SourceTable Pivot(Sum(Amount) For PricingId In([8],[9],[11])) as PivotTable";
+                command.CommandText = "Select * From (Select Model,Name,CoverImage,PricingId,Amount From CarPricings inner join Cars on CarPricings.CarId=Cars.CarId inner join Brands on Brands.BrandId=Cars.BrandId) As SourceTable Pivot(Sum(Amount) For PricingId In([8],[9],[11])) as PivotTable;";
                 command.CommandType = System.Data.CommandType.Text;
                 _context.Database.OpenConnection();
                 using(var reader = command.ExecuteReader())
@@ -34,14 +34,14 @@ namespace CarBook.Persistence.Repositories.CarPricingRepositories
                     {
                         CarPricingViewModel pricingViewModel = new CarPricingViewModel()
                         {
+                            BrandName = reader["Name"].ToString(),
                             Model = reader["Model"].ToString(),
                             CoverImage = reader["CoverImage"].ToString(),
-                            BrandName = reader["Name"].ToString(),
                             Amounts = new List<decimal>
                             {
-                                Convert.ToDecimal(reader[8]),
-                                Convert.ToDecimal(reader[9]),
-                                Convert.ToDecimal(reader[11])
+                                Convert.ToDecimal(reader["8"]),
+                                Convert.ToDecimal(reader["9"]),
+                                Convert.ToDecimal(reader["11"])
                             }
                         };
                         carPricingViewModels.Add(pricingViewModel);

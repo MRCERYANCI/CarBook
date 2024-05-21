@@ -33,6 +33,8 @@ namespace CarBook.WebApi.Controllers
                 Description = createCommentDto.Description,
                 CreatedDate = createCommentDto.CreatedDate,
                 Status = createCommentDto.Status,
+                Email = createCommentDto.Email,
+                PhoneNumber = createCommentDto.PhoneNumber,
                 BlogId = createCommentDto.BlogId
             };
             _genericRepository.Create(value);
@@ -77,6 +79,12 @@ namespace CarBook.WebApi.Controllers
                 return Ok(value);
             }
             return Ok();
+        }
+
+        [HttpGet("GetCountCommentBlog")]
+        public IActionResult GetCountCommentBlog(int BlogId)
+        {
+            return Ok(_genericRepository.GetCountCommentBlog(BlogId));
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using CarBook.DtoLayer.Dtos.BlogDtos;
-using CarBook.DtoLayer.Dtos.CommentDtos;
+﻿using CarBook.DtoLayer.Dtos.CommentDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
@@ -49,7 +48,7 @@ namespace CarBook.WebUI.Areas.CarBookAdmin.Controllers
             var responseMessage = await client.PostAsync("https://localhost:7125/api/Comment", stringContent);
             if (responseMessage.IsSuccessStatusCode)//Eğer istek attığımız apiden(responsemessage) 200-299 arası durum kodu dönerse
             {
-                return Json("Ok");
+                return RedirectToAction("BlogDetail", "Blog", new { BlogId = createCommentDto.BlogId });
             }
             return View();
         }

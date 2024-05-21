@@ -44,7 +44,7 @@ namespace CarBook.Persistence.Repositories.CommentRepositories
 
         public List<Comment> GetById(int id)
         {
-            return _carBookContext.Comments.Where(x => x.BlogId == id && x.Status == true).ToList();
+            return _carBookContext.Comments.Where(x => x.BlogId == id && x.Status == true).OrderByDescending(x=>x.CreatedDate).ToList();
         }
 
         public void Remove(Comment entity)
@@ -55,6 +55,11 @@ namespace CarBook.Persistence.Repositories.CommentRepositories
         public void Update(Comment entity)
         {
             _carBookContext.Comments.Update(entity);
+        }
+
+        public int GetCountCommentBlog(int BlogId)
+        {
+            return _carBookContext.Comments.Count(x => x.BlogId == BlogId && x.Status == true);
         }
     }
 }
