@@ -1,0 +1,42 @@
+﻿@model List<ResultBlogsWithsAuthorDto>
+@{
+    int Count = 0;
+}
+
+<div class="col-xl-6">
+    <div class="card">
+        <div class="card-body">
+
+            <h4 class="card-title">Son 5 Blog Listesi</h4>
+            <p class="card-subtitle mb-4 font-size-13">
+                Yazarlarımızın Son 5 Blog Listesi
+            </p>
+
+            <div class="table-responsive">
+                <table class="table table-borderless table-hover table-centered table-nowrap mb-0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Blog Başlığı</th>
+                            <th>Yazar</th>
+                            <th>Bloğu Aç</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            Count++;
+                            <tr>
+                                <td>@Count</td>
+                                <td>@(item.Title.Length > 40 ? item.Title.Substring(0, 40) + "..." : item.Title)</td>
+                                <td>@item.Name</td>
+                                <td><a href="/Blog/BlogDetail?BlogId=@item.BlogId" class="btn btn-primary" target="_blank">Bloğu Görüntüle</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div> 

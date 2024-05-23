@@ -1,12 +1,28 @@
 ﻿@model List<ResultCommentDto>
+<style>
+    .profil {
+        width: 50px;
+        height: 50px;
+        background-color: #007bff;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        border-radius: 50%;
+        position: relative;
+        text-transform: uppercase; /* Harfleri büyük yap */
+    }
+
+</style>
 
 <h3 class="mb-5">@ViewBag.CommentCount Yorum Sayısı</h3>
 <ul class="comment-list">
-    @foreach(var x in Model)
+    @foreach (var x in Model)
     {
         <li class="comment">
-            <div class="vcard bio">
-                <img src="~/images/defaultpic.jpg" alt="Image placeholder">
+            <div class="profil">
+                <div class="profile-1" data-name="@x.Name"></div>
             </div>
             <div class="comment-body">
                 <h3>@x.Name</h3>

@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+@await Component.InvokeAsync("_AdminDashboardStatisticsComponentPartial")
+
+<div class="row">
+    @await Component.InvokeAsync("_AdminDashboardStatisticChart1ComponentPartial")
+    @await Component.InvokeAsync("AdminDashboardStatisticChart2ComponentPartial")
+    @await Component.InvokeAsync("_AdminDashboardStatisticChart3ComponentPartial")
+</div>
+
+<div class="row">
+    @await Component.InvokeAsync("_AdminDashboardCarPricingListComponentPartial")
+    @await Component.InvokeAsync("_AdminDashboardBlogListComponentPartial")
+</div>
+
+
+@* <script src="~/Admin/vertical/assets/js/jquery.min.js"></script>
+<script src="~/Admin/vertical/assets/js/bootstrap.bundle.min.js"></script>
+<script src="~/Admin/vertical/assets/js/metismenu.min.js"></script>
+<script src="~/Admin/vertical/assets/js/waves.js"></script>
+<script src="~/Admin/vertical/assets/js/simplebar.min.js"></script>
+
+
+<script src="~/Admin/plugins/morris-js/morris.min.js"></script>
+<script src="~/Admin/plugins/raphael/raphael.min.js"></script>
+<script src="~/Admin/vertical/assets/pages/dashboard-demo.js"></script>
+<script src="~/Admin/vertical/assets/js/theme.js"></script> *@

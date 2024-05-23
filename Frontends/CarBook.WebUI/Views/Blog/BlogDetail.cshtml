@@ -23,3 +23,27 @@
     </div>
 </section>
 
+
+<script>
+    function updateProfileInitials() {
+        const profiles = document.querySelectorAll('.profile-1');
+
+        profiles.forEach(profile => {
+            const name = profile.getAttribute('data-name');
+            if (name) {
+                const initials = name.split(' ').map(word => word[0]).join('');
+                profile.textContent = initials;
+            }
+        });
+    }
+
+    // Sayfa yüklendiğinde bir kez çalıştır
+    document.addEventListener('DOMContentLoaded', function () {
+        updateProfileInitials();
+
+        // Her 5 saniyede bir güncelleme yap (örnek olarak)
+        setInterval(updateProfileInitials, 5000);
+    });
+
+</script>
+

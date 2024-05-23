@@ -29,6 +29,7 @@
                                 <th>Sil</th>
                                 <th>Güncelle</th>
                                 <th>Detaylar</th>
+                                <th>Özellik Ata</th>
                                 <th>Sitede Gör</th>
                                 <th>Fiyat Bilgileri</th>
                             </tr>
@@ -48,7 +49,8 @@
                                     <td>@x.km</td>
                                     <td><a href="/AdminCar/DeleteCar?CarId=@x.CarId" class="btn btn-outline-danger">Sil</a></td>
                                     <td><a href="/AdminCar/GetCar?CarId=@x.CarId" class="btn btn-outline-warning">Güncelle</a></td>
-                                    <td><a href="/CarBookAdmin/CarDetail/CarFeatureDetail/@x.CarId" class="btn btn-outline-primary">Detaylar</a></td>
+                                    <td><a href="/CarBookAdmin/CarDetail/CarFeatureDetail/@x.CarId" class="btn btn-outline-dark">Detaylar</a></td>
+                                    <td><a href="/CarBookAdmin/CarDetail/CreateFeatureByCar/@x.CarId" class="btn btn-outline-primary">Özellik Ata</a></td>
                                     <td><a href="#" class="btn btn-outline-warning">Sitede Gör</a></td>
                                     <td><a href="#" class="btn btn-outline-secondary">Fiyat Bilgileri</a></td>
                                 </tr>

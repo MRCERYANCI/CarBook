@@ -33,6 +33,12 @@ namespace CarBook.Persistence.Repositories.CarFeatureRepositories
             _carBookContext.SaveChanges();
         }
 
+        public void CreateCarFeatureByCar(CarFeature carFeature)
+        {
+            _carBookContext.CarFeatures.Add(carFeature);
+            _carBookContext.SaveChanges();
+        }
+
         public async Task<List<CarFeature>> GetCarFeaturesByCarId(int CarId)
         {
             return await _carBookContext.CarFeatures.Where(y => y.CarId == CarId).Include(x => x.Feature).ToListAsync();
