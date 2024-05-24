@@ -1,0 +1,22 @@
+﻿@using CarBook.DtoLayer.Dtos.CarFeatures
+@model List<ResultCarFeatureDto>
+
+<div class="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
+    <div class="row">
+        <div class="col-md-4">
+            <ul class="features">
+                @foreach(var x in Model)
+                {
+                    if (x.Available)
+                    {
+                        <li class="check"><span class="ion-ios-checkmark"></span>@x.FeatureName</li>
+                    }
+                    else
+                    {
+                        <li class="remove"><span class="ion-ios-checkmark"></span>@x.FeatureName</li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>

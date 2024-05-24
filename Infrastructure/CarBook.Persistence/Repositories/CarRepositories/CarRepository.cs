@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CarBook.Persistence.Repositories.CarRepositories
 {
-    public class CarRepository : ICarRepository
+	public class CarRepository : ICarRepository
 	{
 		private readonly CarBookContext _context;
 
@@ -24,7 +24,12 @@ namespace CarBook.Persistence.Repositories.CarRepositories
 			return _context.Cars.Count();
         }
 
-        public List<Car> GetCarsListBrands()
+		public Car GetCarsByIdListBrands(int id)
+		{
+			return _context.Cars.Where(y => y.CarId == id).Include(x => x.Brand).FirstOrDefault();
+		}
+
+		public List<Car> GetCarsListBrands()
 		{
 			return  _context.Cars.Include(x => x.Brand).ToList();
 		}

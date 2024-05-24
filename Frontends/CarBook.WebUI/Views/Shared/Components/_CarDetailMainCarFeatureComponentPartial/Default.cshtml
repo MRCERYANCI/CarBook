@@ -1,0 +1,90 @@
+﻿@model GetCarIdBrandDto
+
+<div class="row justify-content-center">
+	<div class="col-md-12">
+		<div class="car-details">
+			<div class="img rounded" style="background-image: url(@Html.DisplayFor(x=>x.BigImageUrl));"></div>
+			<div class="text text-center">
+				<span class="subheading">@Html.DisplayFor(x => x.BrandName)</span>
+				<h2>@Html.DisplayFor(x => x.Model)</h2>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md d-flex align-self-stretch ftco-animate">
+		<div class="media block-6 services">
+			<div class="media-body py-md-4">
+				<div class="d-flex mb-3 align-items-center">
+					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-dashboard"></span></div>
+					<div class="text">
+						<h3 class="heading mb-0 pl-3">
+							Km
+							<span>@Html.DisplayFor(x => x.km)</span>
+						</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md d-flex align-self-stretch ftco-animate">
+		<div class="media block-6 services">
+			<div class="media-body py-md-4">
+				<div class="d-flex mb-3 align-items-center">
+					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-pistons"></span></div>
+					<div class="text">
+						<h3 class="heading mb-0 pl-3">
+							Vites Türü
+							<span>@Html.DisplayFor(x => x.Transmission)</span>
+						</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md d-flex align-self-stretch ftco-animate">
+		<div class="media block-6 services">
+			<div class="media-body py-md-4">
+				<div class="d-flex mb-3 align-items-center">
+					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-car-seat"></span></div>
+					<div class="text">
+						<h3 class="heading mb-0 pl-3">
+							Koltuk Sayısı
+							<span>@Html.DisplayFor(x => x.Seat)</span>
+						</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md d-flex align-self-stretch ftco-animate">
+		<div class="media block-6 services">
+			<div class="media-body py-md-4">
+				<div class="d-flex mb-3 align-items-center">
+					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-backpack"></span></div>
+					<div class="text">
+						<h3 class="heading mb-0 pl-3">
+							Bagaj Sayısı
+							<span>@Html.DisplayFor(x => x.Luggage)</span>
+						</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md d-flex align-self-stretch ftco-animate">
+		<div class="media block-6 services">
+			<div class="media-body py-md-4">
+				<div class="d-flex mb-3 align-items-center">
+					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-diesel"></span></div>
+					<div class="text">
+						<h3 class="heading mb-0 pl-3">
+							Yakıt Türü
+							<span>@Html.DisplayFor(x => x.Fuel)</span>
+						</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

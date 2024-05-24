@@ -9,5 +9,12 @@ namespace CarBook.WebUI.Controllers
             ViewBag.MainCover = "ARABALARIMIZ";
             return View();
         }
+
+        public async Task<IActionResult> CarDetail(int id)
+        {
+            ViewBag.MainCover = "ARAÇ DETAYLARI ";
+            ViewBag.CarId = id;
+            return View();
+        }
     }
 }

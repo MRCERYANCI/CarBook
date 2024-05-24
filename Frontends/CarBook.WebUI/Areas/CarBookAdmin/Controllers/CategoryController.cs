@@ -15,7 +15,7 @@ namespace CarBook.WebUI.Areas.CarBookAdmin.Controllers
         {
             _httpClientFactory = httpClientFactory;
         }
-
+         
         [Route("Index")]
         [HttpGet]
 
