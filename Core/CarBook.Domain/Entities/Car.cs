@@ -40,5 +40,8 @@ namespace CarBook.Domain.Entities
 
         //Car Reservastion Arası İlişki
         public ICollection<Reservation> Reservations { get; set; }
+
+        //Car Review Arası İlişki
+        public ICollection<Review> Reviews { get; set; }
     }
 }
