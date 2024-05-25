@@ -1,10 +1,14 @@
 ﻿using CarBook.DtoLayer.Dtos.LocationDtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using NuGet.Common;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace CarBook.WebUI.Areas.CarBookAdmin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("CarBookAdmin")]
     [Route("CarBookAdmin/Location")]
     public class LocationController : Controller
@@ -21,14 +25,20 @@ namespace CarBook.WebUI.Areas.CarBookAdmin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var client = _httpClientFactory.CreateClient();
-            var responsemessage = await client.GetAsync("https://localhost:7125/api/Location");
-            if (responsemessage.IsSuccessStatusCode)//200 ile 299 arasında bir sayı dönerse true döneceğinden başarılı false dönerse başarısız
+            var token = User.Claims.FirstOrDefault(x => x.Type == "accessToken").Value;
+            if (token != null)
             {
-                var jsondata = await responsemessage.Content.ReadAsStringAsync();//Bu veri json trü
-                var values = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsondata); //Json Türünü Normale Çevirmek için DeserializeObject Kullanılır
-                return View(values);
+                var client = _httpClientFactory.CreateClient();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var responsemessage = await client.GetAsync("https://localhost:7125/api/Location");
+                if (responsemessage.IsSuccessStatusCode)//200 ile 299 arasında bir sayı dönerse true döneceğinden başarılı false dönerse başarısız
+                {
+                    var jsondata = await responsemessage.Content.ReadAsStringAsync();//Bu veri json trü
+                    var values = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsondata); //Json Türünü Normale Çevirmek için DeserializeObject Kullanılır
+                    return View(values);
+                }
             }
+
             return View();
         }
 
@@ -44,13 +54,18 @@ namespace CarBook.WebUI.Areas.CarBookAdmin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateLocation(CreateLocationDto createLocationDto)
         {
-            var client = _httpClientFactory.CreateClient();//İstemciyi Oluştruduk
-            var jsonData = JsonConvert.SerializeObject(createLocationDto);//Modelden gelen veriyi Json Türüne Çevirdik, Normal Veriyi Json Türüne Çevirmek için SerializeObject Kullanılır
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");//İçeriğin dönüşümü için kullancaz(content,encoding,mediaType)
-            var responseMessage = await client.PostAsync("https://localhost:7125/api/Location", stringContent);
-            if (responseMessage.IsSuccessStatusCode)//Eğer istek attığımız apiden(responsemessage) 200-299 arası durum kodu dönerse
+            var token = User.Claims.FirstOrDefault(x => x.Type == "accessToken").Value;
+            if (token != null)
             {
-                return RedirectToAction("Index", "Location", new { area = "CarBookAdmin" });
+                var client = _httpClientFactory.CreateClient();//İstemciyi Oluştruduk
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var jsonData = JsonConvert.SerializeObject(createLocationDto);//Modelden gelen veriyi Json Türüne Çevirdik, Normal Veriyi Json Türüne Çevirmek için SerializeObject Kullanılır
+                StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");//İçeriğin dönüşümü için kullancaz(content,encoding,mediaType)
+                var responseMessage = await client.PostAsync("https://localhost:7125/api/Location", stringContent);
+                if (responseMessage.IsSuccessStatusCode)//Eğer istek attığımız apiden(responsemessage) 200-299 arası durum kodu dönerse
+                {
+                    return RedirectToAction("Index", "Location", new { area = "CarBookAdmin" });
+                }
             }
             return View();
         }
@@ -58,11 +73,16 @@ namespace CarBook.WebUI.Areas.CarBookAdmin.Controllers
         [Route("DeleteLocation")]
         public async Task<IActionResult> DeleteLocation(int LocationId)
         {
-            var client = _httpClientFactory.CreateClient();//İstemciyi Oluşturduk
-            var responseMessage = await client.DeleteAsync($"https://localhost:7125/api/Location?LocationId={LocationId}");
-            if (responseMessage.IsSuccessStatusCode)//Eğer istek attığımız apiden(responsemessage) 200-299 arası durum kodu dönerse
+            var token = User.Claims.FirstOrDefault(x => x.Type == "accessToken").Value;
+            if (token != null)
             {
-                return RedirectToAction("Index");
+                var client = _httpClientFactory.CreateClient();//İstemciyi Oluşturduk
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var responseMessage = await client.DeleteAsync($"https://localhost:7125/api/Location?LocationId={LocationId}");
+                if (responseMessage.IsSuccessStatusCode)//Eğer istek attığımız apiden(responsemessage) 200-299 arası durum kodu dönerse
+                {
+                    return RedirectToAction("Index");
+                }
             }
             return RedirectToAction("Index");
         }
@@ -71,13 +91,18 @@ namespace CarBook.WebUI.Areas.CarBookAdmin.Controllers
         [HttpGet]
         public async Task<IActionResult> GetLocation(int LocationId)
         {
-            var client = _httpClientFactory.CreateClient();
-            var responsemessage = await client.GetAsync($"https://localhost:7125/api/Location/{LocationId}");
-            if (responsemessage.IsSuccessStatusCode)//200 ile 299 arasında bir sayı dönerse true döneceğinden başarılı false dönerse başarısız
+            var token = User.Claims.FirstOrDefault(x => x.Type == "accessToken").Value;
+            if (token != null)
             {
-                var jsondata = await responsemessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateLocationDto>(jsondata); //Json Türünü Normale Çevirmek için DeserializeObject Kullanılır
-                return View(values);
+                var client = _httpClientFactory.CreateClient();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var responsemessage = await client.GetAsync($"https://localhost:7125/api/Location/{LocationId}");
+                if (responsemessage.IsSuccessStatusCode)//200 ile 299 arasında bir sayı dönerse true döneceğinden başarılı false dönerse başarısız
+                {
+                    var jsondata = await responsemessage.Content.ReadAsStringAsync();
+                    var values = JsonConvert.DeserializeObject<UpdateLocationDto>(jsondata); //Json Türünü Normale Çevirmek için DeserializeObject Kullanılır
+                    return View(values);
+                }
             }
             return View();
         }
@@ -86,14 +111,20 @@ namespace CarBook.WebUI.Areas.CarBookAdmin.Controllers
         [HttpPost]
         public async Task<IActionResult> GetLocation(UpdateLocationDto updateLocationDto)
         {
-            var client = _httpClientFactory.CreateClient();//İstemciyi Oluştruduk
-            var jsonData = JsonConvert.SerializeObject(updateLocationDto);//Modelden gelen veriyi Json Türüne Çevirdik
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");//İçeriğin dönüşümü için kullancaz(content,encoding,mediaType)
-            var responseMessage = await client.PutAsync("https://localhost:7125/api/Location", stringContent);
-            if (responseMessage.IsSuccessStatusCode)//Eğer istek attığımız apiden(responsemessage) 200-299 arası durum kodu dönerse
+            var token = User.Claims.FirstOrDefault(x => x.Type == "accessToken").Value;
+            if(token != null)
             {
-                return RedirectToAction("Index");
+                var client = _httpClientFactory.CreateClient();//İstemciyi Oluştruduk
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var jsonData = JsonConvert.SerializeObject(updateLocationDto);//Modelden gelen veriyi Json Türüne Çevirdik
+                StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");//İçeriğin dönüşümü için kullancaz(content,encoding,mediaType)
+                var responseMessage = await client.PutAsync("https://localhost:7125/api/Location", stringContent);
+                if (responseMessage.IsSuccessStatusCode)//Eğer istek attığımız apiden(responsemessage) 200-299 arası durum kodu dönerse
+                {
+                    return RedirectToAction("Index");
+                }
             }
+
             return View();
         }
     }
