@@ -4,6 +4,7 @@ using CarBook.DtoLayer.Dtos.ReservationDtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace CarBook.WebUI.Controllers
@@ -22,23 +23,31 @@ namespace CarBook.WebUI.Controllers
         {
             ViewBag.MainCover = "ARAÇ KİRALAMA ";
             ViewBag.CarId = CarId;
-            var client = _httpClientFactory.CreateClient();
-            var responsemessage = await client.GetAsync("https://localhost:7125/api/Location");
-            if (responsemessage.IsSuccessStatusCode)//200 ile 299 arasında bir sayı dönerse true döneceğinden başarılı false dönerse başarısız
+
+            var token = User.Claims.FirstOrDefault(x => x.Type == "accessToken").Value;
+
+            if(token != null)
             {
-                var jsondata = await responsemessage.Content.ReadAsStringAsync();//Bu veri json trü
-                var values = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsondata); //Json Türünü Normale Çevirmek için DeserializeObject Kullanılır
+                var client = _httpClientFactory.CreateClient();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var responsemessage = await client.GetAsync("https://localhost:7125/api/Location");
+                if (responsemessage.IsSuccessStatusCode)//200 ile 299 arasında bir sayı dönerse true döneceğinden başarılı false dönerse başarısız
+                {
+                    var jsondata = await responsemessage.Content.ReadAsStringAsync();//Bu veri json trü
+                    var values = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsondata); //Json Türünü Normale Çevirmek için DeserializeObject Kullanılır
 
-                List<SelectListItem> LocationItems = (from x in values
-                                                      select new SelectListItem
-                                                      {
-                                                          Text = x.Name,
-                                                          Value = x.LocationId.ToString()
-                                                      }).ToList();
+                    List<SelectListItem> LocationItems = (from x in values
+                                                          select new SelectListItem
+                                                          {
+                                                              Text = x.Name,
+                                                              Value = x.LocationId.ToString()
+                                                          }).ToList();
 
-                ViewBag.LocationItems = LocationItems;
+                    ViewBag.LocationItems = LocationItems;
 
+                }
             }
+
             return View();
         }
 
