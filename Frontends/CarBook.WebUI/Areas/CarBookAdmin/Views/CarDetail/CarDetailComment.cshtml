@@ -1,0 +1,46 @@
+﻿@model CreateReviewDto
+
+@{
+    ViewData["Title"] = "CarDetailComment";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+
+        <h4 class="card-title">Araba Yorum Girişi Alanı</h4>
+        <p class="card-subtitle mb-12">
+            Müşterilerin kiraladıkları araçların yorumlarını buradan girebilirsiniz.
+        </p>
+
+        <form method="post">
+            <div class="form-group">
+                <input type="hidden" asp-for="CarId" value="@ViewBag.CarId">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputName">Müşteri Ad Soyad</label>
+                <input type="text" class="form-control" id="exampleInputName" asp-for="CustomerName" placeholder="Lütfen Müşterinin Adını Soyadını Giriniz...">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputName">Yazar Görsel</label>
+                <input type="text" class="form-control" id="exampleInputName" asp-for="CustomerImage" placeholder="Lütfen Yazarın Görselini Giriniz...">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputName">Araç Puanı</label>
+                <input type="number" min="1" max="5" class="form-control" id="exampleInputName" asp-for="RaytingValue" placeholder="Lütfen Müşetirinin Araç Puanını Giriniz...">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputName">Deneyim Yorumu</label>
+                <textarea class="form-control" asp-for="CustomerComment" placeholder="Lütfenin Müşterinin Kısa Görüşlerini Giriniz..." rows="10">
+
+                </textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary waves-effect waves-light">Yorumu Kaydet</button>
+        </form>
+    </div>
+</div>
+

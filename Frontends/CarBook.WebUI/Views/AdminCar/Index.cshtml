@@ -31,6 +31,7 @@
                                 <th>Detaylar</th>
                                 <th>Özellik Ata</th>
                                 <th>Sitede Gör</th>
+                                <th>Yorum Yap</th>
                                 <th>Fiyat Bilgileri</th>
                             </tr>
                         </thead>
@@ -51,7 +52,8 @@
                                     <td><a href="/AdminCar/GetCar?CarId=@x.CarId" class="btn btn-outline-warning">Güncelle</a></td>
                                     <td><a href="/CarBookAdmin/CarDetail/CarFeatureDetail/@x.CarId" class="btn btn-outline-dark">Detaylar</a></td>
                                     <td><a href="/CarBookAdmin/CarDetail/CreateFeatureByCar/@x.CarId" class="btn btn-outline-primary">Özellik Ata</a></td>
-                                    <td><a href="#" class="btn btn-outline-warning">Sitede Gör</a></td>
+                                    <td><a href="/Car/CarDetail/@x.CarId" class="btn btn-outline-warning">Sitede Gör</a></td>
+                                    <td><a href="/CarBookAdmin/CarDetail/CarDetailComment/@x.CarId" class="btn btn-outline-success">Yorum Yap</a></td>
                                     <td><a href="#" class="btn btn-outline-secondary">Fiyat Bilgileri</a></td>
                                 </tr>
                             }

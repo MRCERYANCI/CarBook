@@ -4,6 +4,7 @@ using CarBook.DtoLayer.Dtos.CarFeatures;
 using CarBook.DtoLayer.Dtos.CarFeaturesDtos;
 using CarBook.DtoLayer.Dtos.CategoryDtos;
 using CarBook.DtoLayer.Dtos.FeatureDtos;
+using CarBook.DtoLayer.Dtos.ReviewDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
@@ -80,7 +81,6 @@ namespace CarBook.WebUI.Areas.CarBookAdmin.Controllers
         }
 
         [HttpPost]
-
         public async Task<IActionResult> CreateFeatureByCar(List<ResultFeatureAvaliable> resultFeatureAvaliables)
         {
             if (resultFeatureAvaliables.Count > 0)
@@ -108,6 +108,28 @@ namespace CarBook.WebUI.Areas.CarBookAdmin.Controllers
             }
 
             return RedirectToAction("Index", "AdminCar");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CarDetailComment(int id)
+        {
+            ViewBag.CarId = id;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CarDetailComment(CreateReviewDto createReviewDto)
+        {
+            var client = _httpClientFactory.CreateClient();//İstemciyi Oluştruduk
+            var jsonData = JsonConvert.SerializeObject(createReviewDto);//Modelden gelen veriyi Json Türüne Çevirdik, Normal Veriyi Json Türüne Çevirmek için SerializeObject Kullanılır
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");//İçeriğin dönüşümü için kullancaz(content,encoding,mediaType)
+            var responseMessage = await client.PostAsync("https://localhost:7125/api/Reviews", stringContent);
+            if (responseMessage.IsSuccessStatusCode)//Eğer istek attığımız apiden(responsemessage) 200-299 arası durum kodu dönerse
+            {
+                return RedirectToAction("CarDetailComment", new { id = createReviewDto.CarId });
+            }
+
+            return View();
         }
 
     }
