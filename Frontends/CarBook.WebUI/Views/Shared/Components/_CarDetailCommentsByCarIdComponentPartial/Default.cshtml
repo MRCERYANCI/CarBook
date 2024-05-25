@@ -29,57 +29,6 @@
             }
         </div>
 
-        <div class="col-md-5">
-            <div class="rating-wrap">
-                <h3 class="head">Değerlendirme Sonuçları</h3>
-                <div class="wrap">
-                    <p class="star">
-                        <span>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            (98%)
-                        </span>
-                        <span>20 Reviews</span>
-                    </p>
-                    <p class="star">
-                        <span>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            (85%)
-                        </span>
-                        <span>10 Reviews</span>
-                    </p>
-                    <p class="star">
-                        <span>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            (70%)
-                        </span>
-                        <span>5 Reviews</span>
-                    </p>
-                    <p class="star">
-                        <span>
-                            <i class="ion-ios-star"></i>
-                            <i class="ion-ios-star"></i>
-                            (10%)
-                        </span>
-                        <span>0 Reviews</span>
-                    </p>
-                    <p class="star">
-                        <span>
-                            <i class="ion-ios-star"></i>
-                            (0%)
-                        </span>
-                        <span>0 Reviews</span>
-                    </p>
-                </div>
-            </div>
-        </div>
+        @await Component.InvokeAsync("_CarDetailCommentReviewComponentPartial",new {id = ViewBag.CarId})
     </div>
 </div>

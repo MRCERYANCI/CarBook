@@ -45,5 +45,11 @@ namespace CarBook.WebApi.Controllers
             await _mediator.Send(updateReviewCommand);
             return Ok("Yorumunuz Başarıyla Güncellenmiştir");
         }
+
+        [HttpGet("GetReviewByCar/{id}")]
+        public async Task<IActionResult> GetReviewByCar(int id)
+        {
+            return Ok(await _mediator.Send(new GetReviewByCarQuery(id)));
+        }
     }
 }

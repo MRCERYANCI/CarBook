@@ -1,0 +1,74 @@
+﻿@model List<ResultReviewByCarDto>
+
+
+<div class="col-md-5">
+    <div class="rating-wrap">
+        <h3 class="head">Değerlendirme Sonuçları</h3>
+        <div class="wrap">
+            @if (Model.Count() > 0)
+            {
+                @foreach (var item in Model)
+                {
+                    <p class="star">
+                        <span>
+                            @for (int i = 0; i < item.CommentScore; i++)
+                            {
+                                <i class="ion-ios-star"></i>
+                            }
+                            (@item.PointPercentage%)
+                        </span>
+                        <span>@item.CommentCount Yorum</span>
+                    </p>
+                }
+            }
+            else
+            {
+                <p class="star">
+                    <span>
+                        <i class="ion-ios-star"></i>
+                        <i class="ion-ios-star"></i>
+                        <i class="ion-ios-star"></i>
+                        <i class="ion-ios-star"></i>
+                        <i class="ion-ios-star"></i>
+                        (0%)
+                    </span>
+                    <span>0 Yorum</span>
+                </p>
+                <p class="star">
+                    <span>
+                        <i class="ion-ios-star"></i>
+                        <i class="ion-ios-star"></i>
+                        <i class="ion-ios-star"></i>
+                        <i class="ion-ios-star"></i>
+                        (0%)
+                    </span>
+                    <span>0 Yorum</span>
+                </p>
+                <p class="star">
+                    <span>
+                        <i class="ion-ios-star"></i>
+                        <i class="ion-ios-star"></i>
+                        <i class="ion-ios-star"></i>
+                        (0%)
+                    </span>
+                    <span>0 Yorum</span>
+                </p>
+                <p class="star">
+                    <span>
+                        <i class="ion-ios-star"></i>
+                        <i class="ion-ios-star"></i>
+                        (0%)
+                    </span>
+                    <span>0 Yorum</span>
+                </p>
+                <p class="star">
+                    <span>
+                        <i class="ion-ios-star"></i>
+                        (0%)
+                    </span>
+                    <span>0 Yorum</span>
+                </p>
+            }
+        </div>
+    </div>
+</div>
