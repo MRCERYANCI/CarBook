@@ -13,8 +13,8 @@ namespace CarBook.WebUI.Areas.CarBookAdmin.Controllers
     public class TestimonialController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly string credentialsPath = "C:\\Users\\burak\\OneDrive\\Masaüstü\\Web Yazılımları\\Araba Kiralama Yazılımı\\CarBook\\Frontends\\CarBook.WebUI\\wwwroot\\Google Api\\credentials.json";
-        private readonly string folderid = "1jNhPK8kR1Wu3fYC6J0sG73TIVXStC9uq";
+        private readonly string credentialsPath = "";
+        private readonly string folderid = "";
         string[] filesToUPload = new string[1];
 
         public TestimonialController(IHttpClientFactory httpClientFactory)
