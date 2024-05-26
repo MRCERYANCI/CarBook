@@ -31,3 +31,4 @@ Bu projede kullanıcılar, istedikleri lokasyonu seçip, o bölgede boşta olan 
 ![Ekran görüntüsü 2024-05-26 175834](https://github.com/MRCERYANCI/CarBook/assets/98846167/51d2a351-4e35-45fa-8854-e1c04941d6d1)
 ![Ekran görüntüsü 2024-05-26 175910](https://github.com/MRCERYANCI/CarBook/assets/98846167/c9572a34-b838-42f3-aac9-d972193168bc)
 ![Ekran görüntüsü 2024-05-26 175928](https://github.com/MRCERYANCI/CarBook/assets/98846167/7d2d21a7-558a-428f-9f33-a7c3621051ef)
+![Ekran görüntüsü 2024-05-26 180234](https://github.com/MRCERYANCI/CarBook/assets/98846167/791a4ba2-ed10-4e7d-aa14-a1cd5f4599a4)
